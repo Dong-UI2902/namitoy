@@ -1,0 +1,119 @@
+.product {
+  position: relative;
+
+  &__card-title {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+  }
+
+  &__image {
+    position: sticky;
+    top: 65px;
+    img {
+      display: block;
+      margin: 0 auto;
+      padding-top: 2rem;
+      transition: .3s;
+    }
+
+    .carousel {
+      position: relative;
+      padding-top: 2rem;
+    }
+
+    .carousel__images {
+      display: flex;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
+    .carousel__image-selected {
+      border: 3px solid #ffa700!important;
+    }
+
+    .carousel__image {
+      margin-right: 10px;
+      height: 50px;
+      min-width: 50px;
+      border: 3px solid #ffa70000;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-color: #444444;
+    }
+
+    .carousel__button {
+      position: absolute;
+      top: 40%;
+    }
+
+    .carousel__button-left {
+      left: 10px;
+    }
+
+    .carousel__button-right {
+      right: 10px;
+    }
+
+    @media only screen and (max-width: 900px) {
+      .selected-image {
+        height: 350px;
+      }
+      //
+      //.carousel__image {
+      //  height: 50px;
+      //  min-width: 50px;
+      //}
+    }
+  }
+
+  .counter {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    input {
+      width: 50px;
+      line-height: 37px;
+      font-size: 15px;
+      text-align: center;
+      font-weight: 500;
+      color: black;
+      appearance: none;
+      outline: 0;
+      border: 1px solid #f5f5f5;
+    }
+
+    span {
+      display: block;
+      font-size: 25px;
+      padding: 0 10px;
+      cursor: pointer;
+      user-select: none;
+      background-color: #F5F5F5;
+      width: 40px;
+      text-align: center;
+      border: 1px solid #f5f5f5;
+    }
+  }
+
+
+
+  &__view {
+    &-body {
+      display: grid;
+      row-gap: 0.5rem;
+      margin-top: 40px;
+    }
+
+    &-btn {
+      padding-top: 25px;
+      padding-bottom: 25px;
+      text-transform: uppercase;
+      font-size: 15px;
+    }
+  }
+}

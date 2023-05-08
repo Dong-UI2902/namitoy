@@ -1,0 +1,145 @@
+.home {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--body-color);
+
+  &__shape-small,
+  &__shape-big {
+    background-color: hsl(2, 100%, 88%);
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+  }
+
+  &__shape-small {
+    width: 200px;
+    height: 200px;
+    top: -5rem;
+    left: -5rem;
+  }
+
+  &__shape-big {
+    width: 250px;
+    height: 250px;
+    top: 17rem;
+    right: -8rem;
+  }
+
+  &__shape-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    mix-blend-mode: soft-light;
+  }
+
+  &__container {
+    position: relative;
+    height: 100vh;
+  }
+
+  &__title {
+    font-size: var(--biggest-font-size);
+    font-family: var(--second-font);
+    color: var(--title-color);
+    margin-bottom: .75rem;
+
+    span {
+      display: block;
+      color: var(--first-color);
+    }
+  }
+
+  &__description,
+  &__button {
+    font-weight: 600;
+  }
+
+  &__description {
+    color: var(--title-color);
+    margin-bottom: 1.5rem;
+    font-size: var(--normal-font-size);
+  }
+
+  &__button {
+    display: inline-block;
+    background-color: var(--first-color);
+    color: #fff;
+    padding: 1rem 2rem;
+    border-radius: 1.5rem .25rem;
+    box-shadow: 0 8px 20px hsla(2, 100%, 45%, .28);
+    transition: background .4s;
+
+    &:hover {
+      background-color: var(--first-color-alt);
+    }
+  }
+
+  &__images {
+    position: relative;
+    width: 525px;
+    height: 578px;
+    justify-self: center;
+
+    img {
+      position: absolute;
+    }
+  }
+
+  &__girl {
+    width: 100%;
+    transform: rotate(15deg);
+    left: 1rem;
+    right: 0;
+    top: 1.7rem;
+    margin: 0 auto;
+  }
+
+  &__toy1 {
+    width: 60px;
+    right: 1.5rem;
+    bottom: 3.5rem;
+  }
+
+  &__toy2 {
+    width: 70px;
+    top: 7rem;
+    left: -1rem;
+    transform: rotate(-25deg);
+  }
+}
+
+.animation {
+  animation: float-girl 4s ease-in-out infinite;
+}
+
+.home__toy:nth-child(1) {
+  width: 70px;
+  transform: rotate(30deg);
+}
+
+.home__toy:nth-child(2) {
+  width: 80px;
+  bottom: 4rem;
+}
+
+.home__toy:nth-child(3) {
+  width: 50px;
+  top: 8rem;
+  right: 3rem;
+  transform: rotate(-15deg);
+}
+
+@keyframes float-girl {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-1.5rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

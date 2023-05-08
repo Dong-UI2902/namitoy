@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&family=Open+Sans:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  --first-color: rgb(219, 0, 117);
+  --first-color-alt: hsl(2, 89%, 53%);
+  --title-color: hsl(233, 20%, 15%);
+  --text-color: hsl(233, 4%, 35%);
+  --text-color-light: hsl(19, 8%, 55%);
+  --body-color: hsl(2, 100%, 97%);
+  --price-color: #9b1b30;
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: 'Roboto', sans-serif;
+  --second-font: 'Lemon', cursive;
+  --title-font: 'Coiny', cursive;
+  --biggest-font-size: 2.25rem;
+  --normal-font-size: .938rem;
+
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  --font-medium: 500;
+  --font-semi-bold: 600;
+  --container-color: #fff;
+}
+
+/* Responsive typography */
+@media screen and (min-width: 1024px) {
+  :root {
+    --biggest-font-size: 4rem;
+    --normal-font-size: 1.2rem;
+  }
+}
+
+/*=============== BASE ===============*/
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: var(--text-color);
+  background-color: var(--nextui--cardColor);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.main {
+  overflow: hidden; /* For the animations */
+}
+
+.section {
+  padding: 40px 0;
+}
+
+.title {
+  font-weight: var(--nextui-fontWeights-light);
+  font-size: var(--nextui-fontSizes-4xl);
+  line-height: var(--nextui-lineHeights-md);
+  text-transform: uppercase;
+  font-family: var(--body-font);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.btn {
+  background: var(--first-color)!important;
+}
+.border {
+  border-color: var(--first-color)!important;
+}
+.main-color {
+  color: var(--first-color)!important;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0 auto;
+  padding: 10px;
+  max-width: 1280px;
+
+  li {
+    font-size: 18px;
+    margin: 0;
+
+    a {
+      color: #0275d8;
+      text-decoration: none;
+
+      &:hover {
+        color: #01447e;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: "/\00a0";
+}
+
+.price-color {
+  color: var(--price-color)!important;
+}

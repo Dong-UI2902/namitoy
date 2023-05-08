@@ -1,0 +1,51 @@
+.auth {
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+  .form {
+    padding: 40px 0;
+    margin: 0 auto;
+    background-color: hsla(0, 0%, 10%, .1);
+    max-width: 500px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-radius: 5%;
+    border: white 2px solid;
+    backdrop-filter: blur(8px);
+    top: 50%;
+    transform: translateY(-50%);
+
+    &__btn {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    &__control {
+      width: 300px;
+      div {
+        width: 100%;
+      }
+    }
+
+    p {
+      color: #F31260;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+
+  .title {
+    font-weight: bold;
+    font-size: 2.5rem;
+    text-align: center;
+    color: #fff;
+  }
+
+  label {
+    color: #fff;
+  }
+}
