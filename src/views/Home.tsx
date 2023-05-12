@@ -102,16 +102,16 @@ const Home = () => {
       <Container lg>
         <section className="policy section">
           <Grid.Container gap={2} justify="flex-start">
-            <Grid xs={3}>
+            <Grid md={3} xs={12}>
               <CardPolicy />
             </Grid>
-            <Grid xs={3}>
+            <Grid md={3} xs={12}>
               <CardPolicy />
             </Grid>
-            <Grid xs={3}>
+            <Grid md={3} xs={12}>
               <CardPolicy />
             </Grid>
-            <Grid xs={3}>
+            <Grid md={3} xs={12}>
               <CardPolicy />
             </Grid>
           </Grid.Container>

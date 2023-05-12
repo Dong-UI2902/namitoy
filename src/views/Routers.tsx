@@ -22,7 +22,7 @@ const Routers = () => {
           />
         ))}
         <Route path="/product" element={<Product />} />
-        <Route path="/manager" element={<Admin path="dashboard" />} />
+        <Route path="/manager" element={<Admin path="all-product" />} />
         <Route
           path="/manager/all-product"
           element={<Admin path="all-product" />}
@@ -30,6 +30,7 @@ const Routers = () => {
         <Route path="/manager/form" element={<Admin path="form" />} />
         <Route path="/manager/form/:id" element={<Admin path="form" />} />
         <Route path="/manager/all-cart" element={<Admin path="all-cart" />} />
+        <Route path="/manager/all-types" element={<Admin path="all-types" />} />
         <Route path="/table" element={<Admin path="table" />} />
         <Route path="/login" element={<Auth auth={"login"} />} />
         <Route path="/register" element={<Auth auth={"register"} />} />

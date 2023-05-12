@@ -5,15 +5,6 @@ import { useLocation } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
 import { useType } from "../../contexts/Type/Provider";
 
-const collapseItems = [
-  "Tất cả",
-  "Máy rung",
-  "Onahole",
-  "Khuôn mông",
-  "Idol",
-  "Phụ kiện",
-];
-
 const Nav = () => {
   const { user, logout } = useAuth();
   const { types, handleHref } = useType();
@@ -33,7 +24,12 @@ const Nav = () => {
           },
         }}
       >
-        <Text b hideIn="xs" css={{ fontFamily: "var(--second-font)" }}>
+        <Text
+          b
+          hideIn="xs"
+          css={{ fontFamily: "var(--second-font)", cursor: "pointer" }}
+          onClick={() => (window.location.href = "/")}
+        >
           <span style={{ color: "var(--first-color)" }}>Namitoy </span>
           Store
         </Text>
@@ -116,12 +112,12 @@ const Nav = () => {
         )}
       </Navbar.Content>
       <Navbar.Collapse>
-        {collapseItems.map((item, index) => (
+        {types.map((item, index) => (
           <Navbar.CollapseItem
-            key={item}
+            key={item._id}
             activeColor="secondary"
             css={{
-              color: index === collapseItems.length - 1 ? "$error" : "",
+              color: index === types.length - 1 ? "$error" : "",
             }}
             isActive={index === 2}
           >
@@ -133,7 +129,7 @@ const Nav = () => {
               }}
               href="#"
             >
-              {item}
+              {item.name}
             </Link>
           </Navbar.CollapseItem>
         ))}

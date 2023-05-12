@@ -14,7 +14,7 @@ export type Product = {
   isHot: boolean;
   material: string;
   gender: string;
-  type?: Type;
+  type: Type;
   user?: User;
   createdAt?: Date;
 };
@@ -46,5 +46,5 @@ export interface ProductContextAPI extends ProductProviderState {
   // getHotProduct: () => void;
   findById: (productId: string) => void;
   // update: (productId: string) => void;
-  // destroy: (productId: string) => void;
+  deleteProduct: (productId: string) => void;
 }

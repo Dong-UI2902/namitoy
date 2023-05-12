@@ -6,14 +6,21 @@ import Slide from "./Slide";
 const HotProduct = () => {
   return (
     <div>
-      <Grid.Container gap={1} justify="flex-start">
-        <Grid xs={6}>
-          <Text h1 color="var(--first-color)">
-            Các mặt hàng <br />
-            cực hot hiện nay
-          </Text>
-        </Grid>
-      </Grid.Container>
+      <Text
+        color="var(--first-color)"
+        className="title"
+        weight="semibold"
+        transform="uppercase"
+      >
+        Các mặt hàng <br />
+        cực hot hiện nay
+      </Text>
+      {/*<center>*/}
+      {/*  <Link to="#" className="title main-color">*/}
+      {/*    Các mặt hàng <br />*/}
+      {/*    cực hot hiện nay*/}
+      {/*  </Link>*/}
+      {/*</center>*/}
       <Grid.Container
         css={{ padding: 0 }}
         gap={2}

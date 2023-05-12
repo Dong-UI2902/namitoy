@@ -15,16 +15,17 @@ import {
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { Product, useProduct } from "../../contexts/Product";
-import { useType } from "../../contexts/Type/Provider";
-import Noti from "./Noti";
-import { PRODUCT } from "../../contexts/Product/Constain";
+import { Product, useProduct } from "../../../contexts/Product";
+import { useType } from "../../../contexts/Type/Provider";
+import Noti from "../Noti";
+import { PRODUCT } from "../../../contexts/Product/Constain";
 import { FaRedoAlt, FaRegSave } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 
-const FormProduct = () => {
+const ProductForm = () => {
   const {
     product,
+    products,
     setProduct,
     loading,
     error,
@@ -34,7 +35,7 @@ const FormProduct = () => {
     arrToStringImg,
     stringToArrImg,
   } = useProduct();
-  const { types } = useType();
+  const { type, setType, types } = useType();
   const { id } = useParams();
 
   const [visible, setVisible] = React.useState(false);
@@ -96,14 +97,23 @@ const FormProduct = () => {
   };
 
   useEffect(() => {
-    if (id) return findById(id);
+    if (id) {
+      if (products.length <= 0) {
+        return findById(id);
+      } else {
+        const temp = products.find((item) => item._id === id);
+        setProduct(temp || PRODUCT);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [id, products]);
 
   return (
     <div>
       <center>
-        <Text h2>Thêm/Chỉnh sửa sản phẩm</Text>
+        <Text h2>
+          {product._id ? "Chỉnh sửa sản phẩm" : "Thêm mới sản phẩm"}
+        </Text>
       </center>
       <Grid.Container>
         <Grid xs={12} md={6} style={{ display: "block" }}>
@@ -126,7 +136,7 @@ const FormProduct = () => {
                 type="text"
                 list="types"
                 id="type"
-                value={product.type?.name}
+                value={product.type?.name || ""}
                 name="type"
                 onChange={handleChange}
               />
@@ -223,6 +233,13 @@ const FormProduct = () => {
               editor={ClassicEditor}
               data={product.description}
               style={{ height: "200px!important" }}
+              name="description"
+              onChange={(event: any, editor: { getData: () => any }) => {
+                setProduct((prevState) => ({
+                  ...prevState,
+                  description: editor.getData(),
+                }));
+              }}
             />
           </div>
         </Grid>
@@ -232,9 +249,16 @@ const FormProduct = () => {
           Làm mới
         </Button>
         <Spacer x={2} />
-        <Button color="success" onClick={handleClick} icon={<FaRegSave />}>
-          Lưu
-        </Button>
+
+        {loading ? (
+          <Button disabled auto bordered color="success" css={{ px: "$13" }}>
+            <Loading type="points" color="currentColor" size="sm" />
+          </Button>
+        ) : (
+          <Button color="success" onClick={handleClick} icon={<FaRegSave />}>
+            Lưu
+          </Button>
+        )}
       </Row>
       <Noti
         visible={visible}
@@ -257,4 +281,4 @@ const FormProduct = () => {
   );
 };
 
-export default FormProduct;
+export default ProductForm;

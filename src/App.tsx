@@ -16,13 +16,13 @@ function App() {
       <Providers>
         <Nav />
         <Routers />
+        <hr />
+        <Container lg>
+          <section className="section" style={{ paddingBottom: 0 }}>
+            <Footer />
+          </section>
+        </Container>
       </Providers>
-      <hr />
-      <Container lg>
-        <section className="section" style={{ paddingBottom: 0 }}>
-          <Footer />
-        </section>
-      </Container>
     </div>
   );
 }

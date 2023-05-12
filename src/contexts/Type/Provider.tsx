@@ -32,7 +32,22 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
     setLoading(true);
     typeService
       .addNewType(newType)
-      .then((res) => setType(res.data))
+      .then((res) => {
+        setType(res.data);
+        setTypes((prevState) => [...prevState, res.data]);
+      })
+      .catch()
+      .finally(() => setLoading(false));
+  };
+
+  const deleteType = (_id: string) => {
+    setLoading(true);
+    typeService
+      .destroyType(_id)
+      .then(() => {
+        const arr = types.filter((item) => item._id !== _id);
+        setTypes(arr);
+      })
       .catch()
       .finally(() => setLoading(false));
   };
@@ -55,6 +70,7 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       addNewType,
       getAllTypes,
       handleHref,
+      deleteType,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [type, types, loading, error]
