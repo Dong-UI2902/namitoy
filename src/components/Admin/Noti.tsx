@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Loading, Modal, Text } from "@nextui-org/react";
+import { Button, Modal, Text } from "@nextui-org/react";
 
 const Noti: React.FC<{
   visible: boolean;

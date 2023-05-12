@@ -1,9 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { Col, Input, Row, Table, Tooltip } from "@nextui-org/react";
+import {
+  Col,
+  FormElement,
+  Input,
+  Row,
+  Table,
+  Tooltip,
+} from "@nextui-org/react";
 import { useType } from "../../../contexts/Type/Provider";
 import { Link } from "react-router-dom";
 import { IconButton } from "../IconButton";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import {
+  FaCheckCircle,
+  FaEdit,
+  FaTimesCircle,
+  FaTrashAlt,
+} from "react-icons/fa";
+import { Type } from "../../../contexts/Type";
+import { TYPE } from "../../../contexts/Type/constain";
+import TypeForm from "./TypeForm";
 
 const columns = [
   {
@@ -25,8 +40,18 @@ const columns = [
 ];
 
 const TypesTable = () => {
-  const { types, getAllTypes, deleteType, setType } = useType();
+  const { types, getAllTypes, deleteType, setType, type } = useType();
+  const [temp, setTemp] = useState<Type>(TYPE);
   const [editing, setEditing] = useState(false);
+  const [visible, setVisible] = React.useState(false);
+  const handler = (item: Type) => {
+    setType(item);
+    setVisible(true);
+  };
+
+  const findById = (_id: string) => {
+    return types.find((item) => item._id === _id);
+  };
 
   useEffect(() => {
     getAllTypes();
@@ -56,29 +81,20 @@ const TypesTable = () => {
           {types.map((item) => (
             <Table.Row key={item._id}>
               <Table.Cell>{item._id}</Table.Cell>
-              <Table.Cell>
-                <Input
-                  underlined
-                  labelPlaceholder="Name"
-                  initialValue="NextUI"
-                  value={item.name}
-                  readOnly={!editing}
-                  style={{ color: "black" }}
-                />
-              </Table.Cell>
+              <Table.Cell>{item.name}</Table.Cell>
               <Table.Cell>{item?.createdAt?.toString()}</Table.Cell>
               <Table.Cell>
                 <Row justify="center" align="center">
                   <Col css={{ d: "flex" }}>
                     <Tooltip content="Chỉnh sửa">
-                      <IconButton onClick={() => setEditing(true)}>
+                      <IconButton onClick={() => handler(item)}>
                         <FaEdit size={20} fill="#979797" />
                       </IconButton>
                     </Tooltip>
                   </Col>
                   <Col css={{ d: "flex" }}>
                     <Tooltip
-                      content="Xoá sản phẩm"
+                      content="Xoá"
                       color="error"
                       onClick={() => setEditing(true)}
                     >
@@ -93,6 +109,7 @@ const TypesTable = () => {
           ))}
         </Table.Body>
       </Table>
+      <TypeForm visible={visible} setVisible={setVisible} />
     </>
   );
 };

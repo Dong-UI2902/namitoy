@@ -102,9 +102,10 @@ const ProductForm = () => {
         return findById(id);
       } else {
         const temp = products.find((item) => item._id === id);
-        setProduct(temp || PRODUCT);
+        return setProduct(temp || PRODUCT);
       }
     }
+    return setProduct(PRODUCT);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, products]);
 

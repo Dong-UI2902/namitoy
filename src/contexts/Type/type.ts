@@ -28,6 +28,6 @@ export interface TypeContextAPI extends TypeProviderState {
   handleHref: (href: string) => string;
   // getProductById: (productId: string) => void;
   // store: (product: Product) => void;
-  // update: (productId: string) => void;
+  updateType: (newType: Type) => void;
   deleteType: (typeId: string) => void;
 }
