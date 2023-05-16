@@ -70,7 +70,9 @@ const ProductsTable = () => {
     <>
       {/*<div onClick={addAllProd}>1231231231</div>*/}
       {loading ? (
-        <Loading />
+        <center>
+          <Loading size="lg" />
+        </center>
       ) : (
         <>
           <Table
