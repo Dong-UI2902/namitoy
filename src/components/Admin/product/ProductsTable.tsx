@@ -156,18 +156,18 @@ const ProductsTable = () => {
               ))}
             </Table.Body>
           </Table>
-          <section className="section">
-            <center>
-              <Pagination
-                size="lg"
-                total={meta.totalPage}
-                initialPage={meta.page}
-                onChange={(page: number) => handleChange(page)}
-              />
-            </center>
-          </section>
         </>
       )}
+      <section className="section">
+        <center>
+          <Pagination
+            size="lg"
+            total={meta.totalPage}
+            initialPage={meta.page}
+            onChange={(page: number) => handleChange(page)}
+          />
+        </center>
+      </section>
     </>
   );
 };
