@@ -10,8 +10,8 @@ const Admin: React.FC<{ path: string }> = ({ path }) => {
   return (
     <div className="admin section">
       <Container xl>
-        <Grid.Container gap={2} justify="center">
-          <Grid sm={3} md={2} style={{ display: "unset" }}>
+        <Grid.Container gap={0} justify="center">
+          <Grid sm={2} md={2} style={{ display: "unset" }}>
             <Link to="/manager/all-product">
               <Card css={{ mw: "400px" }} isHoverable>
                 <Card.Body>
@@ -35,17 +35,9 @@ const Admin: React.FC<{ path: string }> = ({ path }) => {
                 </Card.Body>
               </Card>
             </Link>
-            <Spacer y={1} />
-            <Link to="/manager/all-cart">
-              <Card css={{ mw: "400px" }} isHoverable>
-                <Card.Body>
-                  <Text>Tất cả đơn hàng</Text>
-                </Card.Body>
-              </Card>
-            </Link>
           </Grid>
           <Spacer x={1} />
-          <Grid sm={8} md={8} style={{ display: "block" }}>
+          <Grid sm={9} md={9} style={{ display: "block" }}>
             {path === "all-product" && <ProductsTable />}
             {path === "all-cart" && <ProductsTable />}
             {path === "all-types" && <TypesTable />}

@@ -1,15 +1,24 @@
 import Api from "../../config/Api";
-import { ArrProductResponse, Product, ProductResponse } from "./type";
+import {
+  ArrProductResponse,
+  PaginationResponse,
+  Product,
+  ProductResponse,
+} from "./type";
 
 const PATH = "/products";
 
-async function getAllProducts(): Promise<ArrProductResponse> {
-  const response = await Api.get(`${PATH}`);
+async function getProducts(page: number): Promise<PaginationResponse> {
+  const response = await Api.get(`${PATH}`, {
+    params: { page: page },
+  });
 
   return response.data;
 }
 
-async function getProductByType(typeId: string): Promise<ArrProductResponse> {
+async function getProductByType(
+  typeId: string | undefined
+): Promise<ArrProductResponse> {
   const response = await Api.get(`${PATH}/type/${typeId}`);
 
   return response.data;
@@ -46,7 +55,7 @@ async function destroy(_id: string): Promise<void> {
 }
 
 export default {
-  getAllProducts,
+  getProducts,
   getProductByType,
   getHotProduct,
   findById,

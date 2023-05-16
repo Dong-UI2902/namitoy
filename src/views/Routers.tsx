@@ -17,7 +17,7 @@ const Routers = () => {
         {types.map((item, index) => (
           <Route
             key={index}
-            path={handleHref(item.name) || "/"}
+            path={`collection/${handleHref(item.name)}` || "/"}
             element={<Collection path={item.name} />}
           />
         ))}

@@ -49,10 +49,6 @@ const TypesTable = () => {
     setVisible(true);
   };
 
-  const findById = (_id: string) => {
-    return types.find((item) => item._id === _id);
-  };
-
   useEffect(() => {
     getAllTypes();
   }, []);
@@ -96,7 +92,7 @@ const TypesTable = () => {
                     <Tooltip
                       content="Xoá"
                       color="error"
-                      onClick={() => setEditing(true)}
+                      onClick={() => deleteType(item._id || "")}
                     >
                       <IconButton>
                         <FaTrashAlt size={20} fill="#FF0080" />

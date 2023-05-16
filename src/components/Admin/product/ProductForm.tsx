@@ -152,7 +152,7 @@ const ProductForm = () => {
               <Input
                 label="Thương hiệu"
                 type="text"
-                value={product.brand}
+                value={product.brand || ""}
                 name="brand"
                 onChange={handleChange}
               />
@@ -161,7 +161,7 @@ const ProductForm = () => {
               <Input
                 label="Chất liệu"
                 type="text"
-                value={product.material}
+                value={product.material || ""}
                 name="material"
                 onChange={handleChange}
               />
@@ -178,8 +178,8 @@ const ProductForm = () => {
             <Grid xs={3}>
               <Input
                 label="Sale(%)"
-                type="number"
-                value={product.sale}
+                type="text"
+                value={product.sale || ""}
                 name="sale"
                 onChange={handleChange}
               />

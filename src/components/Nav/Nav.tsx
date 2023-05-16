@@ -44,7 +44,7 @@ const Nav = () => {
           <Navbar.Link
             key={index}
             isActive={checkRoute("/")}
-            href={`/${handleHref(item.name)}`}
+            href={`/collection/${handleHref(item.name)}`}
           >
             {item.name}
           </Navbar.Link>

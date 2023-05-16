@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   Checkbox,
@@ -11,9 +11,38 @@ import Products from "../components/Product/Products";
 import "../styles/Collection.scss";
 import { Link } from "react-router-dom";
 import { FaAngleRight } from "react-icons/fa";
+import { useType } from "../contexts/Type/Provider";
+import { useProduct } from "../contexts/Product";
 
 const Collection: React.FC<{ path: string }> = ({ path }) => {
   const [selected, setSelected] = React.useState<string[]>([]);
+  const { types } = useType();
+  const { getProductByType, products } = useProduct();
+
+  const [brands, setBrands] = useState<string[]>([]);
+
+  useEffect(() => {
+    const uniqueNames: string[] = [];
+
+    products.filter((element) => {
+      const isDuplicate = uniqueNames.includes(element.brand);
+
+      if (!isDuplicate) {
+        uniqueNames.push(element.brand);
+
+        return true;
+      }
+
+      return false;
+    });
+
+    setBrands(uniqueNames);
+  }, [products]);
+
+  useEffect(() => {
+    const key = types.find((item) => item.name === path);
+    if (key?._id) return getProductByType(key._id);
+  }, []);
 
   // @ts-ignore
   const MockItem = ({ text }) => {
@@ -57,9 +86,9 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
                       value={selected}
                       onChange={(e) => setSelected([...e])}
                     >
-                      <Checkbox value="buenos-aires">Buenos Aires</Checkbox>
-                      <Checkbox value="auckland">Auckland</Checkbox>
-                      <Checkbox value="sydney">Sydney</Checkbox>
+                      {brands.map((item) => (
+                        <Checkbox value="buenos-aires">{item}</Checkbox>
+                      ))}
                     </Checkbox.Group>
                   </Collapse>
                   <Collapse
@@ -83,7 +112,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
           </Grid>
           <Grid xs={12} sm={8} md={9} style={{ display: "unset" }}>
             <Text h3 css={{ paddingLeft: "10px" }}>
-              Máy rung
+              {}
             </Text>
             <div className="section">
               <Products />

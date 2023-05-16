@@ -1,56 +1,16 @@
 import React from "react";
 import { Card, Grid, Row, Spacer, Text } from "@nextui-org/react";
 import "../../styles/Product.scss";
-import CardProd from "./CardProd";
-
-const list = [
-  {
-    title: "Orange 1231209381283128 123012kjashbdak",
-    img: "/images/fruit-1.jpeg",
-    price: "$5.50",
-  },
-  {
-    title: "Tangerine",
-    img: "/images/fruit-2.jpeg",
-    price: "$3.00",
-  },
-  {
-    title: "Cherry",
-    img: "/images/fruit-3.jpeg",
-    price: "$10.00",
-  },
-  {
-    title: "Lemon",
-    img: "/images/fruit-4.jpeg",
-    price: "$5.30",
-  },
-  {
-    title: "Avocado",
-    img: "/images/fruit-5.jpeg",
-    price: "$15.70",
-  },
-  {
-    title: "Lemon 2",
-    img: "/images/fruit-6.jpeg",
-    price: "$8.00",
-  },
-  {
-    title: "Banana",
-    img: "/images/fruit-7.jpeg",
-    price: "$7.50",
-  },
-  {
-    title: "Watermelon",
-    img: "/images/fruit-8.jpeg",
-    price: "$12.20",
-  },
-];
+import { useProduct } from "../../contexts/Product";
+import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
 
 const Products = () => {
+  const { products } = useProduct();
+
   return (
     <div className="product">
       <Grid.Container gap={2} justify="flex-start">
-        {list.map((item, index) => (
+        {products.map((item, index) => (
           <Grid xs={6} sm={3} key={index}>
             <Card isPressable css={{ filter: "none", borderRadius: "unset" }}>
               <Card.Header css={{ position: "absolute", zIndex: 1, top: 1 }}>
@@ -60,7 +20,7 @@ const Products = () => {
               </Card.Header>
               <Card.Body css={{ p: 0 }}>
                 <Card.Image
-                  src={"https://nextui.org" + item.img}
+                  src={fixImage(item.image[0])}
                   objectFit="cover"
                   width="100%"
                   height={200}
@@ -78,8 +38,9 @@ const Products = () => {
                       fontWeight: "$semibold",
                       fontSize: "$sm",
                     }}
+                    className="main-color"
                   >
-                    {item.price}
+                    {<FormatMoney price={item.price} />}
                   </Text>
                   <Spacer x={1} />
                   <Text
@@ -88,8 +49,9 @@ const Products = () => {
                       fontWeight: "$semibold",
                       fontSize: "$sm",
                     }}
+                    del
                   >
-                    {item.price}
+                    {item.sale}
                   </Text>
                 </Row>
               </Card.Footer>

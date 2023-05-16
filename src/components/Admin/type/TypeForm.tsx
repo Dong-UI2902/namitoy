@@ -1,7 +1,6 @@
 import React from "react";
 import { Modal, Button, Text, Input, FormElement } from "@nextui-org/react";
 import { useType } from "../../../contexts/Type/Provider";
-import { Type } from "../../../contexts/Type";
 
 const TypeForm: React.FC<{
   visible: boolean;
@@ -33,9 +32,6 @@ const TypeForm: React.FC<{
               "Thể loại"
             </Text>
           </Text>
-          <Text b size={18}>
-            {type.name}
-          </Text>
         </Modal.Header>
         <Modal.Body>
           <Input
@@ -47,7 +43,7 @@ const TypeForm: React.FC<{
             placeholder="Anahole..."
             value={type.name}
             onChange={(e: React.ChangeEvent<FormElement>) =>
-              setType((pre: Type) => ({ ...pre, name: e.target.value }))
+              setType({ ...type, name: e.target.value })
             }
           />
         </Modal.Body>

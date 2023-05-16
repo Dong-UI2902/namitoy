@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Col,
+  Pagination,
   Row,
   Switch,
   SwitchEvent,
@@ -9,55 +10,71 @@ import {
 } from "@nextui-org/react";
 import { Product, useProduct } from "../../../contexts/Product";
 import { IconButton } from "../IconButton";
-import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { FormatMoney } from "../../../contexts/Product/Constain";
+import { StyledBadge } from "../StyledBadge";
+
+const columns = [
+  {
+    key: "title",
+    label: "TÊN",
+  },
+  {
+    key: "price",
+    label: "GIÁ",
+  },
+  {
+    key: "sale",
+    label: "SALE",
+  },
+  {
+    key: "hot",
+    label: "HOT",
+  },
+  {
+    key: "status",
+    label: "TÌNH TRẠNG",
+  },
+  {
+    key: "actions",
+    label: "HÀNH ĐỘNG",
+  },
+];
 
 const ProductsTable = () => {
-  const { products, getAllProduct, updateProduct, loading, deleteProduct } =
+  const { products, getProducts, updateProduct, loading, deleteProduct, meta } =
     useProduct();
-  const columns = [
-    {
-      key: "title",
-      label: "TÊN",
-    },
-    {
-      key: "price",
-      label: "GIÁ",
-    },
-    {
-      key: "sale",
-      label: "SALE",
-    },
-    {
-      key: "hot",
-      label: "HOT",
-    },
-    {
-      key: "status",
-      label: "TÌNH TRẠNG",
-    },
-    {
-      key: "actions",
-      label: "HÀNH ĐỘNG",
-    },
-  ];
 
   useEffect(() => {
-    getAllProduct();
+    getProducts(meta.page);
   }, []);
 
   const handleSwitch = (product: Product) => {
     updateProduct(product);
   };
 
+  // const addAllProd = async () => {
+  //   for (const item of DATA) {
+  //     await productService.store(item).then().catch();
+  //   }
+  // };
+
+  const handleChange = (page: number) => {
+    getProducts(page);
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <>
+      {/*<div onClick={addAllProd}>1231231231</div>*/}
       <Table
         aria-label="Example table with dynamic content"
         css={{
           height: "auto",
           minWidth: "100%",
         }}
+        lined
       >
         <Table.Header columns={columns}>
           {(column) => (
@@ -74,8 +91,8 @@ const ProductsTable = () => {
           {products.map((item) => (
             <Table.Row key={item._id}>
               <Table.Cell>{item.title}</Table.Cell>
-              <Table.Cell>{item.price}</Table.Cell>
-              <Table.Cell>{item.sale}</Table.Cell>
+              <Table.Cell>{<FormatMoney price={item.price} />}</Table.Cell>
+              <Table.Cell>{<FormatMoney price={item.sale} />}</Table.Cell>
               <Table.Cell>
                 <Switch
                   onChange={(e: SwitchEvent) =>
@@ -87,7 +104,11 @@ const ProductsTable = () => {
                   disabled={loading}
                 />
               </Table.Cell>
-              <Table.Cell>{item.soldOld ? "Hết hàng" : "Còn hàng"}</Table.Cell>
+              <Table.Cell>
+                <StyledBadge type={item.soldOld}>
+                  {item.soldOld ? "Hết hàng" : "Còn hàng"}
+                </StyledBadge>
+              </Table.Cell>
               <Table.Cell>
                 <Row justify="center" align="center">
                   {/*<Col css={{ d: "flex" }}>*/}
@@ -128,6 +149,16 @@ const ProductsTable = () => {
           ))}
         </Table.Body>
       </Table>
+      <section className="section">
+        <center>
+          <Pagination
+            size="lg"
+            total={meta.totalPage}
+            initialPage={meta.page}
+            onChange={(page: number) => handleChange(page)}
+          />
+        </center>
+      </section>
     </>
   );
 };

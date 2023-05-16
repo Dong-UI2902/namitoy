@@ -14,6 +14,11 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
   const [product, setProduct] = useState<Product>(PRODUCT);
   const [products, setProducts] = useState<Product[]>([]);
   const [hot, setHot] = useState<Product[]>([]);
+  const [meta, setMeta] = useState<any>({
+    page: 1,
+    perPage: 20,
+    totalPage: 0,
+  });
 
   const { types } = useType();
 
@@ -43,11 +48,14 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
     return str;
   };
 
-  const getAllProduct = () => {
+  const getProducts = (page: number) => {
     setLoading(true);
     productService
-      .getAllProducts()
-      .then((res) => setProducts(res.data))
+      .getProducts(page)
+      .then((res) => {
+        setProducts(res.data);
+        setMeta(res.meta);
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   };
@@ -114,9 +122,10 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       setProduct,
       products,
       hot,
+      meta,
       getProductByType,
       addNewProduct,
-      getAllProduct,
+      getProducts,
       stringToArrImg,
       arrToStringImg,
       updateProduct,
@@ -124,7 +133,7 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       deleteProduct,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [product, products, hot, loading, error]
+    [product, products, meta, hot, loading, error]
   );
 
   return (

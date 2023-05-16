@@ -1,5 +1,16 @@
 .admin {
+  min-height: 70vh;
   .ck-editor__editable {
     height: 400px !important;
+  }
+
+  .title__table {
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    font-size: 15px;
+    font-weight: 640;
+    height: 19px;
+    overflow: hidden;
   }
 }

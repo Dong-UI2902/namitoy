@@ -9,8 +9,8 @@ export type Product = {
   brand: string;
   description: string;
   soldOld: boolean;
-  price: number;
-  sale: number;
+  price: string;
+  sale: string;
   isHot: boolean;
   material: string;
   gender: string;
@@ -26,6 +26,12 @@ export interface ProductProviderState {
   setProduct: React.Dispatch<React.SetStateAction<Product>>;
   products: Product[];
   hot: Product[];
+  meta: {
+    page: number;
+    perPage: number;
+    totalDocuments: number;
+    totalPage: number;
+  };
 }
 
 export interface ProductResponse extends Respone {
@@ -36,10 +42,19 @@ export interface ArrProductResponse extends Respone {
   data: Product[];
 }
 
+export interface PaginationResponse extends ArrProductResponse {
+  meta: {
+    page: number;
+    perPage: number;
+    totalDocuments: number;
+    totalPage: number;
+  };
+}
+
 export interface ProductContextAPI extends ProductProviderState {
   arrToStringImg: (imgUrl: string[]) => string;
   stringToArrImg: (imgUrl: string) => string[];
-  getAllProduct: () => void;
+  getProducts: (page: number) => void;
   getProductByType: (typeId: string) => void;
   addNewProduct: (product: Product) => void;
   updateProduct: (product: Product) => void;
