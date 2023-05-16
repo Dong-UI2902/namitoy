@@ -48,7 +48,7 @@ const ProductsTable = () => {
     useProduct();
 
   useEffect(() => {
-    getProducts(meta.page);
+    getProducts(1);
   }, []);
 
   const handleSwitch = (product: Product) => {
