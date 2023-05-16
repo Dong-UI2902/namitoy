@@ -163,7 +163,7 @@ const ProductsTable = () => {
           <Pagination
             size="lg"
             total={meta.totalPage}
-            initialPage={meta.page}
+            initialPage={1}
             onChange={(page: number) => handleChange(page)}
           />
         </center>
