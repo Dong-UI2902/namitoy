@@ -58,13 +58,13 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
   const filterPrice = (key: string) => {
     switch (key) {
       case "1":
-        return { key: 0, limit: 100000 };
-      case "3":
-        return { key: 100000, limit: 300000 };
-      case "5":
+        return { key: 0, limit: 300000 };
+      case "2":
         return { key: 300000, limit: 500000 };
+      case "3":
+        return { key: 500000, limit: 1000000 };
       default:
-        return { key: 500000, limit: 9999999999 };
+        return { key: 1000000, limit: 9999999999 };
     }
   };
 
@@ -178,10 +178,10 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
                         value={selectedPrice}
                         onChange={(e) => setSelectedPrice([...e])}
                       >
-                        <Checkbox value="1">Dưới 100.000₫</Checkbox>
-                        <Checkbox value="3">100.000₫ - 300.000₫</Checkbox>
-                        <Checkbox value="5">300.000₫ - 500.000₫</Checkbox>
-                        <Checkbox value="0">Trên 500.000₫</Checkbox>
+                        <Checkbox value="1">Dưới 300.000₫</Checkbox>
+                        <Checkbox value="2">300.000₫ - 500.000₫</Checkbox>
+                        <Checkbox value="3">500.000₫ - 1.000.000₫</Checkbox>
+                        <Checkbox value="4">Trên 1.000.000₫</Checkbox>
                       </Checkbox.Group>
                     </Collapse>
                   </Collapse.Group>

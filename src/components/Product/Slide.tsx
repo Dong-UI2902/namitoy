@@ -3,7 +3,7 @@ import CardProd from "./CardProd";
 // @ts-ignore
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Carousel } from "3d-react-carousal";
-import { Product, useProduct } from "../../contexts/Product";
+import { useProduct } from "../../contexts/Product";
 
 const Slide: React.FC<{ callback: (index: number) => void }> = ({
   callback,
@@ -20,13 +20,17 @@ const Slide: React.FC<{ callback: (index: number) => void }> = ({
 
   return (
     <div>
-      <Carousel
-        slides={slides}
-        autoplay={true}
-        interval={3000}
-        onSlideChange={callback}
-        swipeToSlide={true}
-      />
+      {slides.length > 0 ? (
+        <Carousel
+          slides={slides}
+          autoplay={true}
+          interval={3000}
+          onSlideChange={callback}
+          swipeToSlide={true}
+        />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
