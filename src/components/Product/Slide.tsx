@@ -1,23 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CardProd from "./CardProd";
 // @ts-ignore
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Carousel } from "3d-react-carousal";
+import { Product, useProduct } from "../../contexts/Product";
 
-const slides = [
-  <CardProd />,
-  <CardProd />,
-  <CardProd />,
-  <CardProd />,
-  <CardProd />,
-  <CardProd />,
-  <CardProd />,
-];
+const Slide: React.FC<{ callback: (index: number) => void }> = ({
+  callback,
+}) => {
+  const { hot } = useProduct();
 
-const Slide = () => {
-  const callback = function (index: number) {
-    console.log("callback", index);
-  };
+  const [slides, setSlide] = useState<any[]>([]);
+
+  useEffect(() => {
+    hot.forEach((item) => {
+      setSlide((prevState) => [...prevState, <CardProd product={item} />]);
+    });
+  }, [hot]);
 
   return (
     <div>

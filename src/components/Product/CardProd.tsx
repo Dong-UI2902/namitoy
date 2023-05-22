@@ -1,7 +1,9 @@
 import React from "react";
 import { Card, Row, Spacer, Text } from "@nextui-org/react";
+import { Product } from "../../contexts/Product";
+import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
 
-const CardProd = () => {
+const CardProd: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <Card isPressable css={{ filter: "none", borderRadius: "unset" }}>
       <Card.Header css={{ position: "absolute", zIndex: 1, top: 1 }}>
@@ -11,15 +13,16 @@ const CardProd = () => {
       </Card.Header>
       <Card.Body css={{ p: 0 }}>
         <Card.Image
-          src={"https://nextui.org/images/fruit-3.jpeg"}
+          src={fixImage(product.image[0])}
           objectFit="cover"
           width="100%"
-          height={300}
+          height={200}
+          alt={product.title}
         />
       </Card.Body>
       <Card.Footer css={{ display: "unset" }}>
         <Text className="product__card-title" b>
-          Cherry
+          {product.title}
         </Text>
         <Row wrap="wrap" justify="flex-start" align="center">
           <Text
@@ -28,8 +31,9 @@ const CardProd = () => {
               fontWeight: "$semibold",
               fontSize: "$sm",
             }}
+            className="main-color"
           >
-            $10.00
+            {<FormatMoney price={product.price} />}
           </Text>
           <Spacer x={1} />
           <Text
@@ -38,8 +42,9 @@ const CardProd = () => {
               fontWeight: "$semibold",
               fontSize: "$sm",
             }}
+            del
           >
-            $10.00
+            {product.sale}
           </Text>
         </Row>
       </Card.Footer>

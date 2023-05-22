@@ -58,27 +58,13 @@ const CarouselProd = () => {
       slidesToSlide={1}
       swipeable
     >
-      <div style={{ margin: "0 10px" }}>
-        <CardProd />
-      </div>
-      <div style={{ margin: "0 10px" }}>
-        <CardProd />
-      </div>
-      <div style={{ margin: "0 10px" }}>
-        <CardProd />
-      </div>
-      <div style={{ margin: "0 10px" }}>
-        <CardProd />
-      </div>
-      <div style={{ margin: "0 10px" }}>
-        <CardProd />
-      </div>
-      <div style={{ margin: "0 10px" }}>
-        <CardProd />
-      </div>
-      <div style={{ margin: "0 10px" }}>
-        <CardProd />
-      </div>
+      <div style={{ margin: "0 10px" }}></div>
+      <div style={{ margin: "0 10px" }}></div>
+      <div style={{ margin: "0 10px" }}></div>
+      <div style={{ margin: "0 10px" }}></div>
+      <div style={{ margin: "0 10px" }}></div>
+      <div style={{ margin: "0 10px" }}></div>
+      <div style={{ margin: "0 10px" }}></div>
     </Carousel>
   );
 };

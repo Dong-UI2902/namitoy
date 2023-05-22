@@ -113,7 +113,7 @@ const ProductsTable = () => {
                     </div>
                   </Table.Cell>
                   <Table.Cell>{item.brand}</Table.Cell>
-                  <Table.Cell>{item.type.name}</Table.Cell>
+                  <Table.Cell>{item?.type?.name}</Table.Cell>
                   <Table.Cell>{<FormatMoney price={item.price} />}</Table.Cell>
                   <Table.Cell>{<FormatMoney price={item.sale} />}</Table.Cell>
                   <Table.Cell>

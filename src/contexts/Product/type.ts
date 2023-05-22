@@ -59,7 +59,7 @@ export interface ProductContextAPI extends ProductProviderState {
   getProductByType: (typeId: string) => void;
   addNewProduct: (product: Product) => void;
   updateProduct: (product: Product) => void;
-  // getHotProduct: () => void;
+  getHotProduct: () => void;
   findById: (productId: string) => void;
   // update: (productId: string) => void;
   deleteProduct: (productId: string) => void;

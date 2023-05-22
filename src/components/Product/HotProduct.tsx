@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, Text } from "@nextui-org/react";
 import MiniView from "./MiniView";
 import Slide from "./Slide";
+import { useProduct } from "../../contexts/Product";
+import CardProd from "./CardProd";
 
 const HotProduct = () => {
+  const { getHotProduct, hot } = useProduct();
+  const [position, setPosition] = useState<number>(0);
+
+  useEffect(() => {
+    getHotProduct();
+  }, []);
+
+  const callback = function (index: number) {
+    setPosition(index);
+  };
+
   return (
     <div>
       <Text
@@ -28,7 +41,7 @@ const HotProduct = () => {
         alignItems="center"
       >
         <Grid xs={12} md={6}>
-          <MiniView />
+          <MiniView product={hot[position]} />
         </Grid>
         <Grid
           xs={12}
@@ -37,7 +50,7 @@ const HotProduct = () => {
           className="slide"
           css={{ display: "unset!important" }}
         >
-          <Slide />
+          <Slide callback={callback} />
         </Grid>
       </Grid.Container>
     </div>

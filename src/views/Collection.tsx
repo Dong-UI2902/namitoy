@@ -142,7 +142,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
             <Loading size="lg" />
           </center>
         ) : (
-          <Grid.Container gap={2} justify="center">
+          <Grid.Container gap={2} justify="center" style={{ padding: 0 }}>
             <Grid xs={12} sm={4} md={2}>
               <Grid.Container gap={2}>
                 <Grid css={{ width: "100%" }}>
@@ -188,9 +188,14 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
                 </Grid>
               </Grid.Container>
             </Grid>
-            <Grid xs={12} sm={8} md={9} style={{ display: "unset" }}>
+            <Grid
+              xs={12}
+              sm={8}
+              md={9}
+              style={{ display: "unset", padding: 0 }}
+            >
               <Text h3 css={{ paddingLeft: "10px" }}>
-                {selected}
+                {path}
               </Text>
               <div className="section">
                 <Products listProducts={temp} />
