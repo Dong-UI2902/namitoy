@@ -22,6 +22,14 @@ const columns = [
     label: "TÊN",
   },
   {
+    key: "brand",
+    label: "THƯƠNG HIỆU",
+  },
+  {
+    key: "type",
+    label: "LOẠI",
+  },
+  {
     key: "price",
     label: "GIÁ",
   },
@@ -97,7 +105,15 @@ const ProductsTable = () => {
             <Table.Body>
               {products.map((item) => (
                 <Table.Row key={item._id}>
-                  <Table.Cell>{item.title}</Table.Cell>
+                  <Table.Cell>
+                    <div>
+                      <Tooltip className="title__table" content={item.title}>
+                        {item.title}
+                      </Tooltip>
+                    </div>
+                  </Table.Cell>
+                  <Table.Cell>{item.brand}</Table.Cell>
+                  <Table.Cell>{item.type.name}</Table.Cell>
                   <Table.Cell>{<FormatMoney price={item.price} />}</Table.Cell>
                   <Table.Cell>{<FormatMoney price={item.sale} />}</Table.Cell>
                   <Table.Cell>
@@ -129,7 +145,10 @@ const ProductsTable = () => {
                       {/*</Col>*/}
                       <Col css={{ d: "flex" }}>
                         <Tooltip content="Chỉnh sửa">
-                          <Link to={`/manager/form/${item._id}`}>
+                          <Link
+                            to={`/manager/form/${item._id}`}
+                            target="_blank"
+                          >
                             <IconButton>
                               <FaEdit size={20} fill="#979797" />
                             </IconButton>

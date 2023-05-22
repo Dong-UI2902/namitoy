@@ -5,12 +5,11 @@
   }
 
   .title__table {
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
     font-size: 15px;
     font-weight: 640;
-    height: 19px;
+    white-space: nowrap;
+    width: 350px;
     overflow: hidden;
+    text-overflow: ellipsis;
   }
 }

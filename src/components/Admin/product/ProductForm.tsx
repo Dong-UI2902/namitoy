@@ -98,12 +98,7 @@ const ProductForm = () => {
 
   useEffect(() => {
     if (id) {
-      if (products.length <= 0) {
-        return findById(id);
-      } else {
-        const temp = products.find((item) => item._id === id);
-        return setProduct(temp || PRODUCT);
-      }
+      findById(id);
     }
     return setProduct(PRODUCT);
     // eslint-disable-next-line react-hooks/exhaustive-deps
