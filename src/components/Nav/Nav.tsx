@@ -6,12 +6,15 @@ import DropdownUser from "./DropdownUser";
 import { useType } from "../../contexts/Type/Provider";
 
 const Nav = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
   const { types, handleHref } = useType();
   const { pathname } = useLocation();
 
   const checkRoute = (route: string) => {
-    return route === pathname;
+    const str = pathname.replace("/collection/", "");
+    str.replace("/%20/g", " ");
+
+    return route === decodeURI(str);
   };
 
   return (
@@ -43,7 +46,7 @@ const Nav = () => {
         {types.map((item, index) => (
           <Navbar.Link
             key={index}
-            isActive={checkRoute("/")}
+            isActive={checkRoute(handleHref(item.name))}
             href={`/collection/${handleHref(item.name)}`}
           >
             {item.name}

@@ -121,6 +121,7 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       product,
       setProduct,
       products,
+      setProducts,
       hot,
       meta,
       getProductByType,

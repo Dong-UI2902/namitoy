@@ -125,7 +125,7 @@ const Home = () => {
               Hàng tiêu dùng
             </Link>
           </center>
-          <Products />
+          {/*<Products />*/}
         </section>
         <section className="section">
           <center>
@@ -133,7 +133,7 @@ const Home = () => {
               Hàng tiêu dùng
             </Link>
           </center>
-          <Products />
+          {/*<Products />*/}
         </section>
       </Container>
       <hr />

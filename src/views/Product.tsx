@@ -133,8 +133,8 @@ const Product = () => {
               <center>
                 <Text className="title main-color">Sản phẩm liên quan</Text>
               </center>
-              <Products />
-              <Products />
+              {/*<Products />*/}
+              {/*<Products />*/}
             </section>
           </Grid.Container>
         </Container>

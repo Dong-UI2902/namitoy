@@ -1,16 +1,14 @@
 import React from "react";
 import { Card, Grid, Row, Spacer, Text } from "@nextui-org/react";
 import "../../styles/Product.scss";
-import { useProduct } from "../../contexts/Product";
+import { Product } from "../../contexts/Product";
 import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
 
-const Products = () => {
-  const { products } = useProduct();
-
+const Products: React.FC<{ listProducts: Product[] }> = ({ listProducts }) => {
   return (
     <div className="product">
       <Grid.Container gap={2} justify="flex-start">
-        {products.map((item, index) => (
+        {listProducts.map((item, index) => (
           <Grid xs={6} sm={3} key={index}>
             <Card isPressable css={{ filter: "none", borderRadius: "unset" }}>
               <Card.Header css={{ position: "absolute", zIndex: 1, top: 1 }}>

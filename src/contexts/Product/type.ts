@@ -25,6 +25,7 @@ export interface ProductProviderState {
   product: Product;
   setProduct: React.Dispatch<React.SetStateAction<Product>>;
   products: Product[];
+  setProducts: React.Dispatch<React.SetStateAction<Product[]>>;
   hot: Product[];
   meta: {
     page: number;
