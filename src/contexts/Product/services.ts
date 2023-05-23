@@ -16,10 +16,19 @@ async function getProducts(page: number): Promise<PaginationResponse> {
   return response.data;
 }
 
+async function getNewProducts(): Promise<PaginationResponse> {
+  const response = await Api.get(`${PATH}/new`);
+
+  return response.data;
+}
+
 async function getProductByType(
-  typeId: string | undefined
+  typeId: string | undefined,
+  perPage: number
 ): Promise<ArrProductResponse> {
-  const response = await Api.get(`${PATH}/type/${typeId}`);
+  const response = await Api.get(`${PATH}/type/${typeId}`, {
+    params: { perPage },
+  });
 
   return response.data;
 }
@@ -58,6 +67,7 @@ export default {
   getProducts,
   getProductByType,
   getHotProduct,
+  getNewProducts,
   findById,
   store,
   update,

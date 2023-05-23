@@ -60,10 +60,10 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
-  const getProductByType = (typeId: string) => {
+  const getProductByType = (typeId: string, perPage: number) => {
     setLoading(true);
     productService
-      .getProductByType(typeId)
+      .getProductByType(typeId, perPage)
       .then((res) => setProducts(res.data))
       .catch((err) => setError(err))
       .finally(() => setLoading(false));

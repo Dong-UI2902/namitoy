@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Col,
@@ -8,11 +8,32 @@ import {
   Spacer,
   Text,
 } from "@nextui-org/react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import CarouselImage from "../components/Product/CarouselImage";
-import Products from "../components/Product/Products";
+import { useProduct } from "../contexts/Product";
+import { FormatMoney } from "../contexts/Product/Constain";
+import { useType } from "../contexts/Type/Provider";
 
 const Product = () => {
+  const { findById, product } = useProduct();
+  const { handleHref } = useType();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      return findById(id);
+    } else {
+      window.location.href = "/";
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
+  useEffect(() => {
+    // @ts-ignore
+    document.getElementById("description").innerHTML = product.description;
+    document.title = product.title;
+  }, [product]);
+
   return (
     <div>
       <nav aria-label="breadcrumb" style={{ backgroundColor: "#f5f5f5" }}>
@@ -24,7 +45,12 @@ const Product = () => {
             <Link to="#">Danh mục</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Máy rung
+            <Link to={`/collection/${handleHref(product.type.name)}`}>
+              {product.type.name}
+            </Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            {product.title}
           </li>
         </ol>
       </nav>
@@ -32,13 +58,13 @@ const Product = () => {
         <Container lg>
           <Grid.Container className="product__view" justify="center">
             <Grid xs={12} sm={4}>
-              <CarouselImage />
+              <CarouselImage images={product.image} />
             </Grid>
             <Spacer x={2} />
             <Grid xs={12} sm={6}>
               <div className="product__view-body">
                 <Text size="$xl" weight="medium">
-                  ÂM ĐẠO GIẢ MAGICEYES GOKUSAI UTERUS MOONSHOT
+                  {product.title}
                 </Text>
                 <Row justify="space-between" css={{ maxWidth: "370px" }}>
                   <Col>
@@ -52,7 +78,7 @@ const Product = () => {
                   <Col css={{ textAlign: "end" }}>
                     <Text del>1.150.000 ₫</Text>
                     <Text weight="bold" className="price-color">
-                      1.150.000 ₫
+                      <FormatMoney price={product.price} />
                     </Text>
                   </Col>
                 </Row>
@@ -72,60 +98,7 @@ const Product = () => {
                 </Button>
                 <div>
                   <Text weight="medium">Mô tả</Text>
-                  <Text>
-                    Gokusai Uterus Moonshot là phiên bản nâng cấp của Uterus, có
-                    màu sắc phong phú. Siêu uốn lượn áp đảo trên 5cm! Với slogan
-                    fly yourself to the moon, nhà sản xuất Magiceyes gửi tặng
-                    các bạn một phiên bản hoàn toàn mới! Môi âm đạo cực kì hồng
-                    hào, bắt mắt. Với 70% poll vote trên toydemon là sản phẩm
-                    Magiceyes must have! Moonshot có kết cấu thớ gân uốn lượn 5
-                    góc và giống thật, với những thiết thiết kế Uterus thường
-                    thì Moonshot nâng cao giờ đây đặc biệt uốn lượn. Thâm nhập
-                    MoonShot ngay và bắt đầu cuộc hành trình quanh co vào tử
-                    cung của Cô bé quàng khăn đỏ: âm hộ của cô ấy trải rộng ra
-                    như một vùng đồng bằng khoái cảm, trước khi kéo bạn xuống
-                    sâu hơn và sâu hơn vào cơ thể cô ấy. Thiết kế với một phần
-                    chắc chắn ở cuối thân onahole để cầm nắm tốt hơn, đây là một
-                    món đồ chơi sang trọng, nặng 800gr nhưng sẽ rất vừa vặn với
-                    bàn tay của anh em và sẽ không thấy mỏi. Trọng lượng: 800gr
-                    Kích thước: 17cm x 10cm x 9cm
-                  </Text>
-                  <Text>
-                    Gokusai Uterus Moonshot là phiên bản nâng cấp của Uterus, có
-                    màu sắc phong phú. Siêu uốn lượn áp đảo trên 5cm! Với slogan
-                    fly yourself to the moon, nhà sản xuất Magiceyes gửi tặng
-                    các bạn một phiên bản hoàn toàn mới! Môi âm đạo cực kì hồng
-                    hào, bắt mắt. Với 70% poll vote trên toydemon là sản phẩm
-                    Magiceyes must have! Moonshot có kết cấu thớ gân uốn lượn 5
-                    góc và giống thật, với những thiết thiết kế Uterus thường
-                    thì Moonshot nâng cao giờ đây đặc biệt uốn lượn. Thâm nhập
-                    MoonShot ngay và bắt đầu cuộc hành trình quanh co vào tử
-                    cung của Cô bé quàng khăn đỏ: âm hộ của cô ấy trải rộng ra
-                    như một vùng đồng bằng khoái cảm, trước khi kéo bạn xuống
-                    sâu hơn và sâu hơn vào cơ thể cô ấy. Thiết kế với một phần
-                    chắc chắn ở cuối thân onahole để cầm nắm tốt hơn, đây là một
-                    món đồ chơi sang trọng, nặng 800gr nhưng sẽ rất vừa vặn với
-                    bàn tay của anh em và sẽ không thấy mỏi. Trọng lượng: 800gr
-                    Kích thước: 17cm x 10cm x 9cm
-                  </Text>
-                  <Text>
-                    Gokusai Uterus Moonshot là phiên bản nâng cấp của Uterus, có
-                    màu sắc phong phú. Siêu uốn lượn áp đảo trên 5cm! Với slogan
-                    fly yourself to the moon, nhà sản xuất Magiceyes gửi tặng
-                    các bạn một phiên bản hoàn toàn mới! Môi âm đạo cực kì hồng
-                    hào, bắt mắt. Với 70% poll vote trên toydemon là sản phẩm
-                    Magiceyes must have! Moonshot có kết cấu thớ gân uốn lượn 5
-                    góc và giống thật, với những thiết thiết kế Uterus thường
-                    thì Moonshot nâng cao giờ đây đặc biệt uốn lượn. Thâm nhập
-                    MoonShot ngay và bắt đầu cuộc hành trình quanh co vào tử
-                    cung của Cô bé quàng khăn đỏ: âm hộ của cô ấy trải rộng ra
-                    như một vùng đồng bằng khoái cảm, trước khi kéo bạn xuống
-                    sâu hơn và sâu hơn vào cơ thể cô ấy. Thiết kế với một phần
-                    chắc chắn ở cuối thân onahole để cầm nắm tốt hơn, đây là một
-                    món đồ chơi sang trọng, nặng 800gr nhưng sẽ rất vừa vặn với
-                    bàn tay của anh em và sẽ không thấy mỏi. Trọng lượng: 800gr
-                    Kích thước: 17cm x 10cm x 9cm
-                  </Text>
+                  <Text id="description">{product.description}</Text>
                 </div>
               </div>
             </Grid>

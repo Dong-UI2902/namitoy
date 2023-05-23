@@ -21,7 +21,7 @@ const Routers = () => {
             element={<Collection path={item.name} />}
           />
         ))}
-        <Route path="/product" element={<Product />} />
+        <Route path="/product/:id" element={<Product />} />
         <Route path="/manager" element={<Admin path="all-product" />} />
         <Route
           path="/manager/all-product"

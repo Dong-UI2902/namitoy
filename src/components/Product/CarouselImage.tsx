@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
+import { fixImage } from "../../contexts/Product/Constain";
 
-const CarouselImage = () => {
+const CarouselImage: React.FC<{ images?: string[] }> = ({ images }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState<string>();
-  const [images, setImages] = useState<string[]>(["1.jpg", "2.jpg", "3.jpg"]);
   const carouselItemsRef = useRef<HTMLDivElement[] | null[]>([]);
 
   const handleSelectedImageChange = (newIdx: number) => {
@@ -35,7 +35,10 @@ const CarouselImage = () => {
   return (
     <div className="product">
       <div className="product__image">
-        <img src={"/assets/img/" + selectedImage} alt={"ảnh sản phẩm"} />
+        <img
+          src={selectedImage && fixImage(selectedImage)}
+          alt={"ảnh sản phẩm"}
+        />
         <div className="carousel">
           <div className="carousel__images">
             {images &&
@@ -43,7 +46,7 @@ const CarouselImage = () => {
                 <div
                   onClick={() => handleSelectedImageChange(idx)}
                   style={{
-                    backgroundImage: `url(/assets/img/${image})`,
+                    backgroundImage: `url(${fixImage(image)})`,
                   }}
                   key={idx}
                   className={`carousel__image ${

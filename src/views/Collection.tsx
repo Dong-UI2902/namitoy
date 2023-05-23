@@ -103,7 +103,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
 
   useEffect(() => {
     const key = types.find((item) => item.name === path);
-    if (key?._id) return getProductByType(key._id);
+    if (key?._id) return getProductByType(key._id, 0);
   }, []);
 
   // @ts-ignore
@@ -121,7 +121,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
   return (
     <section className="collection">
       <Container>
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" style={{ backgroundColor: "#f5f5f5" }}>
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link to="/">Trang chủ</Link>

@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Grid, Text } from "@nextui-org/react";
 import "../styles/Store.scss";
 import CardPolicy from "../components/Privacy Policy/CardPolicy";
-import Products from "../components/Product/Products";
 import HotProduct from "../components/Product/HotProduct";
 import { Link } from "react-router-dom";
 import Community from "../components/Community/Community";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ScrollReveal from "scrollreveal";
+import { Product } from "../contexts/Product";
+import productService from "../contexts/Product/services";
+import Products from "../components/Product/Products";
 
 export const sr = ScrollReveal({
   origin: "top",
@@ -18,6 +20,28 @@ export const sr = ScrollReveal({
 });
 
 const Home = () => {
+  const [newProducts, setNewProducts] = useState<Product[]>([]);
+  const [list1, setList1] = useState<Product[]>([]);
+  const [list2, setList2] = useState<Product[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const getNewProducts = () => {
+    setLoading(true);
+    productService
+      .getNewProducts()
+      .then((res) => {
+        setNewProducts(res.data);
+        return productService.getProductByType("64607f556375d21ab96f6467", 12);
+      })
+      .then((res) => {
+        setList1(res.data);
+        return productService.getProductByType("646b8bf4cc4ef18ca8167e7b", 12);
+      })
+      .then((res) => setList2(res.data))
+      .catch()
+      .finally(() => setLoading(false));
+  };
+
   useEffect(() => {
     sr.reveal(`.home__title`, { origin: "bottom", delay: 200 });
     sr.reveal(`.home__description`, { origin: "bottom", delay: 300 });
@@ -28,7 +52,9 @@ const Home = () => {
     sr.reveal(`.home__toy:nth-child(1)`, { origin: "top", delay: 1300 });
     sr.reveal(`.home__toy:nth-child(2)`, { origin: "top", delay: 1400 });
     sr.reveal(`.home__toy:nth-child(3)`, { origin: "top", delay: 1500 });
+    getNewProducts();
   }, []);
+
   return (
     <div className="store">
       <section className="home" id="home">
@@ -122,18 +148,26 @@ const Home = () => {
         <section className="section">
           <center>
             <Link to="#" className="title main-color">
-              Hàng tiêu dùng
+              Hàng mới cập nhật
             </Link>
           </center>
-          {/*<Products />*/}
+          <Products listProducts={newProducts} />
         </section>
         <section className="section">
           <center>
             <Link to="#" className="title main-color">
-              Hàng tiêu dùng
+              Âm đạo giả
             </Link>
           </center>
-          {/*<Products />*/}
+          <Products listProducts={list1} />
+        </section>
+        <section className="section">
+          <center>
+            <Link to="#" className="title main-color">
+              Âm đạo giả Idols
+            </Link>
+          </center>
+          <Products listProducts={list2} />
         </section>
       </Container>
       <hr />

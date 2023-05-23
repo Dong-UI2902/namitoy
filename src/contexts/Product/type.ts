@@ -56,10 +56,10 @@ export interface ProductContextAPI extends ProductProviderState {
   arrToStringImg: (imgUrl: string[]) => string;
   stringToArrImg: (imgUrl: string) => string[];
   getProducts: (page: number) => void;
-  getProductByType: (typeId: string) => void;
+  getProductByType: (typeId: string, perPage: number) => void;
+  getHotProduct: () => void;
   addNewProduct: (product: Product) => void;
   updateProduct: (product: Product) => void;
-  getHotProduct: () => void;
   findById: (productId: string) => void;
   // update: (productId: string) => void;
   deleteProduct: (productId: string) => void;

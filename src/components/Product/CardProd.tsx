@@ -4,8 +4,15 @@ import { Product } from "../../contexts/Product";
 import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
 
 const CardProd: React.FC<{ product: Product }> = ({ product }) => {
+  const handleClick = () => {
+    window.location.href = `/product/${product._id}`;
+  };
   return (
-    <Card isPressable css={{ filter: "none", borderRadius: "unset" }}>
+    <Card
+      isPressable
+      css={{ filter: "none", borderRadius: "unset" }}
+      onClick={handleClick}
+    >
       <Card.Header css={{ position: "absolute", zIndex: 1, top: 1 }}>
         <Text h4 className="main-color">
           20%

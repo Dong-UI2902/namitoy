@@ -50,7 +50,9 @@ const HotProduct = () => {
           className="slide"
           css={{ display: "unset!important" }}
         >
-          <Slide callback={callback} />
+          <div>
+            <Slide callback={callback} />
+          </div>
         </Grid>
       </Grid.Container>
     </div>

@@ -19,7 +19,7 @@ const Slide: React.FC<{ callback: (index: number) => void }> = ({
   }, [hot]);
 
   return (
-    <div>
+    <div style={{ minHeight: "300px" }}>
       {slides.length > 0 ? (
         <Carousel
           slides={slides}
