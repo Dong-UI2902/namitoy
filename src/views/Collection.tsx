@@ -129,9 +129,6 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
             <li className="breadcrumb-item">
               <Link to="#">Danh mục</Link>
             </li>
-            <li className="breadcrumb-item">
-              <Link to="#">Thể loại</Link>
-            </li>
             <li className="breadcrumb-item active" aria-current="page">
               {path}
             </li>
