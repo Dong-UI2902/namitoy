@@ -194,10 +194,10 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
               md={9}
               style={{ display: "unset", padding: 0 }}
             >
-              <Text h3 css={{ paddingLeft: "10px" }}>
-                {path}
-              </Text>
               <div className="section">
+                <Text h2 css={{ paddingLeft: "10px" }}>
+                  {path}
+                </Text>
                 <Products listProducts={temp} />
               </div>
             </Grid>
