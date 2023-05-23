@@ -54,7 +54,7 @@ const Home = () => {
                 </h1>
                 <p className="home__description">
                   Ở đây có bán seggs toy <br />
-                  Thử là mê - Chê vẫn tính tiền
+                  Your pleasure - Our happiness
                 </p>
               </div>
             </Grid>

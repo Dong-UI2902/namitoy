@@ -20,7 +20,7 @@ const Community = () => {
           <CardSocial
             name={"Cão Yêu Chó Mèo"}
             desc={"Namichu - Người đứng đầu cộng đồng Cao Nhân Luôn Bay Group"}
-            href={"Nhắn tin cho chủ group 😉😉"}
+            href={"https://www.facebook.com/groups/ca0xyeuchomeo"}
           >
             <FaUsers />
           </CardSocial>

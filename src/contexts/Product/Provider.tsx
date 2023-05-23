@@ -88,7 +88,6 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       .then(() => {
         const index = products.findIndex((item) => item._id === newProduct._id);
         products[index] = newProduct;
-        setProduct(PRODUCT);
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
