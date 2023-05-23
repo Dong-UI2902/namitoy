@@ -1,9 +1,8 @@
 import React, { useEffect, lazy } from "react";
-import { Container, Grid, Text } from "@nextui-org/react";
+import { Container, Grid, Text, Link } from "@nextui-org/react";
 import "../styles/Store.scss";
 import CardPolicy from "../components/Privacy Policy/CardPolicy";
 import HotProduct from "../components/Product/HotProduct";
-import { Link } from "react-router-dom";
 import Community from "../components/Community/Community";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ScrollReveal from "scrollreveal";
@@ -125,7 +124,7 @@ const Home = () => {
         </section>
         <section className="section">
           <center>
-            <Link to="#" className="title main-color">
+            <Link href="#" className="title main-color">
               Hàng mới cập nhật
             </Link>
           </center>
@@ -134,7 +133,7 @@ const Home = () => {
         <section className="section">
           <center>
             <Link
-              to={"/collection/Am%20đao%20gia"}
+              href={"/collection/Am%20đao%20gia"}
               className="title main-color"
             >
               Âm đạo giả
@@ -145,7 +144,7 @@ const Home = () => {
         <section className="section">
           <center>
             <Link
-              to="/collection/Am%20đao%20gia%20JAV%20Idol"
+              href="/collection/Am%20đao%20gia%20JAV%20Idol"
               className="title main-color"
             >
               Âm đạo giả Idols
