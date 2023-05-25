@@ -19,7 +19,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
   const [selected, setSelected] = React.useState<string[]>([]);
   const [selectedPrice, setSelectedPrice] = React.useState<string[]>([]);
   const { types } = useType();
-  const { getProductByType, products, loading } = useProduct();
+  const { getProductsByType, products, loading } = useProduct();
 
   const [brands, setBrands] = useState<string[]>([]);
   const [temp, setTemp] = useState<Product[]>([]);
@@ -103,7 +103,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
 
   useEffect(() => {
     const key = types.find((item) => item.name === path);
-    if (key?._id) return getProductByType(key._id, 0);
+    if (key?._id) return getProductsByType(key._id, 0);
   }, []);
 
   // @ts-ignore

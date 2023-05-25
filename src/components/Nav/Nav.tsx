@@ -1,35 +1,36 @@
-import React, { useEffect, useState } from "react";
-import { Button, Dropdown, Input, Link, Navbar, Text } from "@nextui-org/react";
+import React, { useEffect } from "react";
+import {
+  Badge,
+  Button,
+  Dropdown,
+  Input,
+  Link,
+  Navbar,
+  Text,
+} from "@nextui-org/react";
 import { useAuth } from "../../contexts/Auth";
 import { useLocation } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
 import { useType } from "../../contexts/Type/Provider";
-import { Type } from "../../contexts/Type";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaHeart } from "react-icons/fa";
+import { useFavorite } from "../../contexts/Favorite";
 
 const Nav = () => {
   const { user } = useAuth();
-  const { types, handleHref } = useType();
+  const { types } = useType();
+  const { totalFavorite, getTotalFavorite } = useFavorite();
   const { pathname } = useLocation();
-  const [limit, setLimit] = useState<Type[]>([]);
-  const [limit2, setLimit2] = useState<Type[]>([]);
-
-  useEffect(() => {
-    for (let i = 0; i < types.length; i++) {
-      if (i <= 4) {
-        setLimit((prevState) => [...prevState, types[i]]);
-      } else {
-        setLimit2((prevState) => [...prevState, types[i]]);
-      }
-    }
-  }, [types]);
 
   const checkRoute = (route: string) => {
     const str = pathname.replace("/collection/", "");
     str.replace("/%20/g", " ");
 
-    return route === decodeURI(str);
+    return route.toLowerCase() === decodeURI(str).toLowerCase();
   };
+
+  useEffect(() => {
+    getTotalFavorite();
+  }, []);
 
   return (
     <Navbar variant="sticky" style={{ background: "#fff", zIndex: "99999" }}>
@@ -57,16 +58,41 @@ const Nav = () => {
         hideIn="xs"
         variant="underline"
       >
-        {limit.map((item) => (
-          <Navbar.Link
-            key={item._id}
-            isActive={checkRoute(handleHref(item.name))}
-            href={`/collection/${handleHref(item.name)}`}
-            css={{ margin: "0 5px" }}
-          >
-            {item.name}
-          </Navbar.Link>
-        ))}
+        <Navbar.Link
+          isActive={checkRoute("Am đao gia")}
+          href={`/collection/Am%20đao%20gia`}
+          css={{ margin: "0 5px" }}
+        >
+          Âm đạo giả
+        </Navbar.Link>
+        <Navbar.Link
+          isActive={checkRoute("Nuoc hoa")}
+          href={`/collection/Nuoc%20hoa`}
+          css={{ margin: "0 5px" }}
+        >
+          Nước hoa
+        </Navbar.Link>
+        <Navbar.Link
+          isActive={checkRoute("Am đao gia JAV Idol")}
+          href={`/collection/Am%20đao%20gia%20JAV%20Idol`}
+          css={{ margin: "0 5px" }}
+        >
+          Âm đạo giả JAV Idol
+        </Navbar.Link>
+        <Navbar.Link
+          isActive={checkRoute("Anal Plug")}
+          href={`/collection/Anal%20Plug`}
+          css={{ margin: "0 5px" }}
+        >
+          Anal Plug
+        </Navbar.Link>
+        <Navbar.Link
+          isActive={checkRoute("Phu kien")}
+          href={`/collection/Phu%20kien`}
+          css={{ margin: "0 5px" }}
+        >
+          Phụ kiện
+        </Navbar.Link>
         <Dropdown isBordered>
           <Navbar.Item>
             <Dropdown.Button
@@ -108,18 +134,42 @@ const Nav = () => {
               },
             }}
           >
-            {limit2.map((item) => (
-              <Dropdown.Item key={item._id}>
-                <Navbar.Link
-                  key={item._id}
-                  isActive={checkRoute(handleHref(item.name))}
-                  href={`/collection/${handleHref(item.name)}`}
-                  css={{ margin: "0 5px" }}
-                >
-                  {item.name}
-                </Navbar.Link>
-              </Dropdown.Item>
-            ))}
+            <Dropdown.Item>
+              <Navbar.Link
+                isActive={checkRoute("khuon mong nguyen khoi")}
+                href={`/collection/Khuon%20mong%20nguyen%20khoi`}
+                css={{ margin: "0 5px" }}
+              >
+                Khuôn mông nguyên khối
+              </Navbar.Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Navbar.Link
+                isActive={checkRoute("Gel boi tron")}
+                href={`/collection/Gel%20boi%20tron`}
+                css={{ margin: "0 5px" }}
+              >
+                Gel bôi trơn
+              </Navbar.Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Navbar.Link
+                isActive={checkRoute("Trung rung nam/nu")}
+                href={`/collection/Trung%20rung%20nam/nu`}
+                css={{ margin: "0 5px" }}
+              >
+                Trứng rung nam/nữ
+              </Navbar.Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Navbar.Link
+                isActive={checkRoute("Bup be tinh duc")}
+                href={`/collection/Bup%20be%20tinh%20duc`}
+                css={{ margin: "0 5px" }}
+              >
+                Búp bê tình dục
+              </Navbar.Link>
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Navbar.Content>
@@ -181,7 +231,14 @@ const Nav = () => {
             </Navbar.Item>
           </Navbar.Content>
         ) : (
-          <DropdownUser />
+          <>
+            <Badge color="error" content={totalFavorite}>
+              <Navbar.Link href={`/favorites`} css={{ margin: "0 5px" }}>
+                <FaHeart size={25} fill="#F31260" />
+              </Navbar.Link>
+            </Badge>
+            <DropdownUser />
+          </>
         )}
       </Navbar.Content>
       <Navbar.Collapse>

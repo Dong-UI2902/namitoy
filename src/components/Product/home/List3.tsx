@@ -11,7 +11,7 @@ const List3 = () => {
   useEffect(() => {
     setLoading(true);
     productService
-      .getProductByType("646b8bf4cc4ef18ca8167e7b", 12)
+      .getProductsByType("646b8bf4cc4ef18ca8167e7b", 12)
       .then((res) => setList(res.data))
       .catch()
       .finally(() => setLoading(false));

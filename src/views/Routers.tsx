@@ -1,17 +1,19 @@
 import React from "react";
 import Home from "./Home";
-import Product from "./Product";
+import ViewProduct from "./ViewProduct";
 import Admin from "./Admin";
 import Auth from "./Auth";
 import { Route, Routes } from "react-router-dom";
 import { useType } from "../contexts/Type/Provider";
 import Collection from "./Collection";
+import Favorites from "./Favorites";
+import Layout from "../components/Layout";
 
 const Routers = () => {
   const { types, handleHref } = useType();
 
   return (
-    <>
+    <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
         {types.map((item, index) => (
@@ -21,7 +23,7 @@ const Routers = () => {
             element={<Collection path={item.name} />}
           />
         ))}
-        <Route path="/product/:id" element={<Product />} />
+        <Route path="/product/:id" element={<ViewProduct />} />
         <Route path="/manager" element={<Admin path="all-product" />} />
         <Route
           path="/manager/all-product"
@@ -34,8 +36,9 @@ const Routers = () => {
         <Route path="/table" element={<Admin path="table" />} />
         <Route path="/login" element={<Auth auth={"login"} />} />
         <Route path="/register" element={<Auth auth={"register"} />} />
+        <Route path="/favorites/" element={<Favorites />} />
       </Routes>
-    </>
+    </Layout>
   );
 };
 

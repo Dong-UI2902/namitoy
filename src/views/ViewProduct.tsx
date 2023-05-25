@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
@@ -11,14 +11,26 @@ import {
 } from "@nextui-org/react";
 import { Link, useParams } from "react-router-dom";
 import CarouselImage from "../components/Product/CarouselImage";
-import { useProduct } from "../contexts/Product";
+import { Product, useProduct } from "../contexts/Product";
 import { FormatMoney } from "../contexts/Product/Constain";
 import { useType } from "../contexts/Type/Provider";
+import { FaHeart } from "react-icons/fa";
+import productService from "../contexts/Product/services";
+import Products from "../components/Product/Products";
+import { useFavorite } from "../contexts/Favorite";
+import { FAVORITE } from "../contexts/Favorite/Constain";
 
-const Product = () => {
+const ViewProduct = () => {
   const { findById, product, loading } = useProduct();
   const { handleHref } = useType();
+  const { addToFavorite } = useFavorite();
   const { id } = useParams();
+
+  const [sameProducts, setSameProducts] = useState<Product[]>([]);
+
+  const handleClick = () => {
+    addToFavorite({ ...FAVORITE, product });
+  };
 
   useEffect(() => {
     if (id) {
@@ -33,6 +45,13 @@ const Product = () => {
     // @ts-ignore
     document.getElementById("description").innerHTML = product.description;
     document.title = product.title;
+    if (product._id) {
+      productService
+        .getSameProductsByType(product.type._id)
+        .then((res) => setSameProducts(res.data))
+        .catch()
+        .finally();
+    }
   }, [product]);
 
   return (
@@ -89,18 +108,15 @@ const Product = () => {
                     </Col>
                   </Row>
                   <hr />
-                  <div className="counter">
-                    <span className="down">-</span>
-                    <input type="text" defaultValue="1" />
-                    <span className="up">+</span>
-                  </div>
                   <Button
                     shadow
                     color="error"
                     className="btn product__view-btn"
                     auto
+                    iconRight={<FaHeart fill="currentColor" />}
+                    onClick={handleClick}
                   >
-                    Thêm vào giỏ hàng
+                    Thêm vào mục yêu thích
                   </Button>
                   <div>
                     <Text weight="medium">Mô tả</Text>
@@ -108,12 +124,11 @@ const Product = () => {
                   </div>
                 </div>
               </Grid>
-              <section className="section">
+              <section className="section" style={{ marginTop: "50px" }}>
                 <center>
                   <Text className="title main-color">Sản phẩm liên quan</Text>
                 </center>
-                {/*<Products />*/}
-                {/*<Products />*/}
+                <Products listProducts={sameProducts} />
               </section>
             </Grid.Container>
           </Container>
@@ -123,4 +138,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ViewProduct;

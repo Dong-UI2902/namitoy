@@ -60,10 +60,10 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
-  const getProductByType = (typeId: string, perPage: number) => {
+  const getProductsByType = (typeId: string, perPage: number) => {
     setLoading(true);
     productService
-      .getProductByType(typeId, perPage)
+      .getProductsByType(typeId, perPage)
       .then((res) => setProducts(res.data))
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
@@ -133,7 +133,7 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       setProducts,
       hot,
       meta,
-      getProductByType,
+      getProductsByType,
       addNewProduct,
       getProducts,
       stringToArrImg,

@@ -28,18 +28,16 @@ const ProductForm = () => {
     products,
     setProduct,
     loading,
-    error,
     addNewProduct,
     updateProduct,
     findById,
     arrToStringImg,
     stringToArrImg,
   } = useProduct();
-  const { type, setType, types } = useType();
+  const { types } = useType();
   const { id } = useParams();
 
   const [visible, setVisible] = React.useState(false);
-  const [a, setA] = React.useState("");
   const handler = () => setVisible(true);
 
   const handleChange = (e: React.ChangeEvent<FormElement>) => {

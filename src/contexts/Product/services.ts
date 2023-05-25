@@ -22,13 +22,21 @@ async function getNewProducts(): Promise<PaginationResponse> {
   return response.data;
 }
 
-async function getProductByType(
+async function getProductsByType(
   typeId: string | undefined,
   perPage: number
 ): Promise<ArrProductResponse> {
   const response = await Api.get(`${PATH}/type/${typeId}`, {
     params: { perPage },
   });
+
+  return response.data;
+}
+
+async function getSameProductsByType(
+  typeId: string | undefined
+): Promise<ArrProductResponse> {
+  const response = await Api.get(`${PATH}/same/type/${typeId}`);
 
   return response.data;
 }
@@ -65,7 +73,8 @@ async function destroy(_id: string): Promise<void> {
 
 export default {
   getProducts,
-  getProductByType,
+  getProductsByType,
+  getSameProductsByType,
   getHotProduct,
   getNewProducts,
   findById,
