@@ -29,7 +29,9 @@ const Nav = () => {
   };
 
   useEffect(() => {
-    getTotalFavorite();
+    if (user?._id) {
+      getTotalFavorite();
+    }
   }, []);
 
   return (
