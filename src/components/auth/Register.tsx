@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, FormElement, Grid, Input, Loading } from "@nextui-org/react";
+import {
+  Button,
+  FormElement,
+  Grid,
+  Input,
+  Loading,
+  Text,
+} from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";
 import { UserSignup } from "../../contexts/Auth/types";
@@ -48,7 +55,6 @@ const Register = () => {
         <Grid className="form__control">
           <Input.Password
             clearable
-            helperText={error?.password}
             type="password"
             label="Mật khẩu"
             name="password"
@@ -59,7 +65,6 @@ const Register = () => {
         <Grid className="form__control">
           <Input.Password
             clearable
-            helperText={error?.passwordConfirmation}
             type="password"
             label="Xác nhận mật khẩu"
             name="passwordConfirmation"
@@ -67,6 +72,13 @@ const Register = () => {
             onChange={handleChange}
           />
         </Grid>
+        {error && (
+          <Grid xs={8} justify="center">
+            <Text size="$xl" color="error">
+              {error}
+            </Text>
+          </Grid>
+        )}
         <Grid xs={8}>
           <Button
             disabled={loading}

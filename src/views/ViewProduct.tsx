@@ -12,24 +12,29 @@ import {
 import { Link, useParams } from "react-router-dom";
 import CarouselImage from "../components/Product/CarouselImage";
 import { Product, useProduct } from "../contexts/Product";
-import { FormatMoney } from "../contexts/Product/Constain";
+import { FormatMoney, GetPercent } from "../contexts/Product/Constain";
 import { useType } from "../contexts/Type/Provider";
 import { FaHeart } from "react-icons/fa";
 import productService from "../contexts/Product/services";
 import Products from "../components/Product/Products";
 import { useFavorite } from "../contexts/Favorite";
 import { FAVORITE } from "../contexts/Favorite/Constain";
+import { useAuth } from "../contexts/Auth";
+import Noti from "../components/Admin/Noti";
 
 const ViewProduct = () => {
   const { findById, product, loading } = useProduct();
   const { handleHref } = useType();
   const { addToFavorite } = useFavorite();
   const { id } = useParams();
+  const { user } = useAuth();
+  const [visible, setVisible] = React.useState(false);
 
   const [sameProducts, setSameProducts] = useState<Product[]>([]);
 
   const handleClick = () => {
-    addToFavorite({ ...FAVORITE, product });
+    if (user?._id) return addToFavorite({ ...FAVORITE, product });
+    return setVisible(true);
   };
 
   useEffect(() => {
@@ -42,10 +47,11 @@ const ViewProduct = () => {
   }, [id]);
 
   useEffect(() => {
-    // @ts-ignore
-    document.getElementById("description").innerHTML = product.description;
-    document.title = product.title;
     if (product._id) {
+      // @ts-ignore
+      document.getElementById("description").innerHTML = product.description;
+      document.title = product.title;
+      console.log("a");
       productService
         .getSameProductsByType(product.type._id)
         .then((res) => setSameProducts(res.data))
@@ -82,26 +88,34 @@ const ViewProduct = () => {
         <div className="product">
           <Container lg>
             <Grid.Container className="product__view" justify="center">
-              <Grid xs={12} sm={4}>
+              <Grid xs={12} sm={5}>
                 <CarouselImage images={product.image} />
               </Grid>
-              <Spacer x={2} />
-              <Grid xs={12} sm={6}>
+              <Spacer x={1} />
+              <Grid
+                xs={12}
+                sm={6}
+                alignItems="flex-start"
+                css={{ width: "370px" }}
+              >
                 <div className="product__view-body">
                   <Text size="$xl" weight="medium">
                     {product.title}
                   </Text>
-                  <Row justify="space-between" css={{ maxWidth: "370px" }}>
+                  <Row justify="space-between">
                     <Col>
                       <Text weight="medium" className="main-color">
                         Còn hàng
                       </Text>
                       <Text weight="medium" className="price-color">
-                        Sale: 34%
+                        Sale:{" "}
+                        <GetPercent sale={product.sale} price={product.price} />
                       </Text>
                     </Col>
                     <Col css={{ textAlign: "end" }}>
-                      <Text del>1.150.000 ₫</Text>
+                      <Text del>
+                        <FormatMoney price={product.sale} />
+                      </Text>
                       <Text weight="bold" className="price-color">
                         <FormatMoney price={product.price} />
                       </Text>
@@ -134,6 +148,25 @@ const ViewProduct = () => {
           </Container>
         </div>
       )}
+      <Noti
+        visible={visible}
+        setVisible={setVisible}
+        btnHandle={
+          <Button
+            bordered
+            auto
+            onPress={() => (window.location.href = "/login")}
+          >
+            Đăng nhập
+          </Button>
+        }
+      >
+        <center>
+          Bạn chưa đăng nhập.
+          <br />
+          Hãy đăng nhập để lưu những sản phẩm mà mình yêu thích nhé!
+        </center>
+      </Noti>
     </div>
   );
 };

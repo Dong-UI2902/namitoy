@@ -17,9 +17,9 @@ import { useFavorite } from "../../contexts/Favorite";
 
 const Nav = () => {
   const { user } = useAuth();
-  const { types } = useType();
   const { totalFavorite, getTotalFavorite } = useFavorite();
   const { pathname } = useLocation();
+  const { types } = useType();
 
   const checkRoute = (route: string) => {
     const str = pathname.replace("/collection/", "");
@@ -36,7 +36,7 @@ const Nav = () => {
 
   return (
     <Navbar variant="sticky" style={{ background: "#fff", zIndex: "99999" }}>
-      <Navbar.Toggle showIn="xs" />
+      <Navbar.Toggle showIn="md" />
       <Navbar.Brand
         css={{
           "@xs": {
@@ -57,43 +57,32 @@ const Nav = () => {
       <Navbar.Content
         enableCursorHighlight
         activeColor="secondary"
-        hideIn="xs"
+        hideIn="md"
         variant="underline"
       >
         <Navbar.Link
           isActive={checkRoute("Am đao gia")}
           href={`/collection/Am%20đao%20gia`}
-          css={{ margin: "0 5px" }}
         >
           Âm đạo giả
         </Navbar.Link>
         <Navbar.Link
-          isActive={checkRoute("Nuoc hoa")}
-          href={`/collection/Nuoc%20hoa`}
-          css={{ margin: "0 5px" }}
-        >
-          Nước hoa
-        </Navbar.Link>
-        <Navbar.Link
           isActive={checkRoute("Am đao gia JAV Idol")}
           href={`/collection/Am%20đao%20gia%20JAV%20Idol`}
-          css={{ margin: "0 5px" }}
         >
           Âm đạo giả JAV Idol
         </Navbar.Link>
         <Navbar.Link
-          isActive={checkRoute("Anal Plug")}
-          href={`/collection/Anal%20Plug`}
-          css={{ margin: "0 5px" }}
+          isActive={checkRoute("khuon mong nguyen khoi")}
+          href={`/collection/Khuon%20mong%20nguyen%20khoi`}
         >
-          Anal Plug
+          Khuôn mông nguyên khối
         </Navbar.Link>
         <Navbar.Link
-          isActive={checkRoute("Phu kien")}
-          href={`/collection/Phu%20kien`}
-          css={{ margin: "0 5px" }}
+          isActive={checkRoute("Bup be tinh duc")}
+          href={`/collection/Bup%20be%20tinh%20duc`}
         >
-          Phụ kiện
+          Búp bê tình dục
         </Navbar.Link>
         <Dropdown isBordered>
           <Navbar.Item>
@@ -138,18 +127,16 @@ const Nav = () => {
           >
             <Dropdown.Item>
               <Navbar.Link
-                isActive={checkRoute("khuon mong nguyen khoi")}
-                href={`/collection/Khuon%20mong%20nguyen%20khoi`}
-                css={{ margin: "0 5px" }}
+                isActive={checkRoute("Anal Plug")}
+                href={`/collection/Anal%20Plug`}
               >
-                Khuôn mông nguyên khối
+                Anal Plug
               </Navbar.Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <Navbar.Link
                 isActive={checkRoute("Gel boi tron")}
                 href={`/collection/Gel%20boi%20tron`}
-                css={{ margin: "0 5px" }}
               >
                 Gel bôi trơn
               </Navbar.Link>
@@ -158,18 +145,24 @@ const Nav = () => {
               <Navbar.Link
                 isActive={checkRoute("Trung rung nam/nu")}
                 href={`/collection/Trung%20rung%20nam/nu`}
-                css={{ margin: "0 5px" }}
               >
                 Trứng rung nam/nữ
               </Navbar.Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <Navbar.Link
-                isActive={checkRoute("Bup be tinh duc")}
-                href={`/collection/Bup%20be%20tinh%20duc`}
-                css={{ margin: "0 5px" }}
+                isActive={checkRoute("Nuoc hoa")}
+                href={`/collection/Nuoc%20hoa`}
               >
-                Búp bê tình dục
+                Nước hoa
+              </Navbar.Link>
+            </Dropdown.Item>
+            <Dropdown.Item>
+              <Navbar.Link
+                isActive={checkRoute("Phu kien")}
+                href={`/collection/Phu%20kien`}
+              >
+                Phụ kiện
               </Navbar.Link>
             </Dropdown.Item>
           </Dropdown.Menu>
@@ -179,6 +172,10 @@ const Nav = () => {
         css={{
           "@xs": {
             w: "25%",
+            jc: "flex-end",
+          },
+          "@sm": {
+            w: "30%",
             jc: "flex-end",
           },
         }}
@@ -225,13 +222,11 @@ const Nav = () => {
           />
         </Navbar.Item>
         {!user ? (
-          <Navbar.Content>
-            <Navbar.Item>
-              <Button auto flat as={Link} href="/login">
-                Đăng nhập
-              </Button>
-            </Navbar.Item>
-          </Navbar.Content>
+          <Navbar.Item>
+            <Button auto flat as={Link} href="/login">
+              Đăng nhập
+            </Button>
+          </Navbar.Item>
         ) : (
           <>
             <Badge color="error" content={totalFavorite}>
@@ -248,9 +243,6 @@ const Nav = () => {
           <Navbar.CollapseItem
             key={item._id}
             activeColor="secondary"
-            css={{
-              color: index === types.length - 1 ? "$error" : "",
-            }}
             isActive={index === 2}
           >
             <Link

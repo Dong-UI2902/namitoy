@@ -3,13 +3,12 @@ import CardProd from "./CardProd";
 // @ts-ignore
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Carousel } from "3d-react-carousal";
-import { useProduct } from "../../contexts/Product";
+import { Product } from "../../contexts/Product";
 
-const Slide: React.FC<{ callback: (index: number) => void }> = ({
-  callback,
-}) => {
-  const { hot } = useProduct();
-
+const Slide: React.FC<{
+  callback: (index: number) => void;
+  hot: Product[];
+}> = ({ callback, hot }) => {
   const [slides, setSlide] = useState<any[]>([]);
 
   useEffect(() => {

@@ -5,13 +5,7 @@ import React, {
   useMemo,
   useState,
 } from "react";
-import {
-  AuthContextAPI,
-  AuthCredential,
-  ErrorProviderState,
-  User,
-  UserSignup,
-} from "./types";
+import { AuthContextAPI, AuthCredential, User, UserSignup } from "./types";
 import { useLocation } from "react-router-dom";
 import authService from "./services";
 import {
@@ -25,7 +19,7 @@ const AuthContext = createContext<AuthContextAPI>({} as AuthContextAPI);
 
 const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
   const [user, setUser] = useState<User>();
-  const [error, setError] = useState<ErrorProviderState>();
+  const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingInitial, setLoadingInitial] = useState<boolean>(true);
   const location = useLocation();
@@ -54,14 +48,14 @@ const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
         if (res.accessToken) setCookie(res.accessToken);
         window.location.href = "/";
       })
-      .catch((err) => console.log(err))
+      .catch((err) => setError(err))
       .finally(() => setLoading(false));
   };
 
   const register = (userSignup: UserSignup) => {
     setLoading(true);
     if (userSignup.passwordConfirmation !== userSignup.password) {
-      setError({ passwordConfirmation: "Xác nhận mật khẩu chưa đúng" });
+      setError("Xác nhận mật khẩu chưa đúng");
       return setLoading(false);
     }
 
@@ -107,6 +101,16 @@ const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
 
     return null;
   }
+
+  const handleAdmin = (role: string) => {
+    if (role && role !== "ADMIN") {
+      console.log(role);
+      const arr = location.pathname.split("/");
+      if (arr.indexOf("manager") > -1) return (window.location.href = "/");
+    }
+  };
+
+  handleAdmin(user?.role || "");
 
   return (
     <AuthContext.Provider value={memoValue}>

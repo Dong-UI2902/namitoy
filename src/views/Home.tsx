@@ -1,15 +1,15 @@
-import React, { useEffect, lazy } from "react";
-import { Container, Grid, Text, Link } from "@nextui-org/react";
+import React, { useEffect, useState } from "react";
+import { Container, Grid, Loading, Text } from "@nextui-org/react";
 import "../styles/Store.scss";
 import CardPolicy from "../components/Privacy Policy/CardPolicy";
 import HotProduct from "../components/Product/HotProduct";
+import { Link } from "react-router-dom";
 import Community from "../components/Community/Community";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ScrollReveal from "scrollreveal";
-
-const List1 = lazy(() => import("../components/Product/home/List1"));
-const List2 = lazy(() => import("../components/Product/home/List2"));
-const List3 = lazy(() => import("../components/Product/home/List3"));
+import { Product } from "../contexts/Product";
+import productService from "../contexts/Product/services";
+import Products from "../components/Product/Products";
 
 export const sr = ScrollReveal({
   origin: "top",
@@ -20,6 +20,34 @@ export const sr = ScrollReveal({
 });
 
 const Home = () => {
+  const [newProducts, setNewProducts] = useState<Product[]>([]);
+  const [list1, setList1] = useState<Product[]>([]);
+  const [list2, setList2] = useState<Product[]>([]);
+  const [loading1, setLoading1] = useState<boolean>(false);
+  const [loading2, setLoading2] = useState<boolean>(false);
+  const [loading3, setLoading3] = useState<boolean>(false);
+
+  const getNewProducts = () => {
+    setLoading1(true);
+    productService
+      .getNewProducts()
+      .then((res) => {
+        setNewProducts(res.data);
+        setLoading2(true);
+        setLoading1(false);
+        return productService.getProductsByType("64607f556375d21ab96f6467", 12);
+      })
+      .then((res) => {
+        setList1(res.data);
+        setLoading3(true);
+        setLoading2(false);
+        return productService.getProductsByType("646b8bf4cc4ef18ca8167e7b", 12);
+      })
+      .then((res) => setList2(res.data))
+      .catch()
+      .finally(() => setLoading3(false));
+  };
+
   useEffect(() => {
     sr.reveal(`.home__title`, { origin: "bottom", delay: 200 });
     sr.reveal(`.home__description`, { origin: "bottom", delay: 300 });
@@ -30,6 +58,7 @@ const Home = () => {
     sr.reveal(`.home__toy:nth-child(1)`, { origin: "top", delay: 1300 });
     sr.reveal(`.home__toy:nth-child(2)`, { origin: "top", delay: 1400 });
     sr.reveal(`.home__toy:nth-child(3)`, { origin: "top", delay: 1500 });
+    getNewProducts();
   }, []);
 
   return (
@@ -104,53 +133,69 @@ const Home = () => {
       </section>
       <Container lg>
         <section className="policy section">
-          <Grid.Container gap={2} justify="flex-start">
-            <Grid md={3} xs={12}>
+          <Grid.Container gap={2}>
+            <Grid md={3} sm={6} xs={12} justify="center">
               <CardPolicy />
             </Grid>
-            <Grid md={3} xs={12}>
+            <Grid md={3} sm={6} xs={12} justify="center">
               <CardPolicy />
             </Grid>
-            <Grid md={3} xs={12}>
+            <Grid md={3} sm={6} xs={12} justify="center">
               <CardPolicy />
             </Grid>
-            <Grid md={3} xs={12}>
+            <Grid md={3} sm={6} xs={12} justify="center">
               <CardPolicy />
             </Grid>
           </Grid.Container>
         </section>
-        <section className="section">
-          <HotProduct />
-        </section>
+        <section className="section">{/*<HotProduct />*/}</section>
         <section className="section">
           <center>
-            <Link href="#" className="title main-color">
+            <Link to="#" className="title main-color">
               Hàng mới cập nhật
             </Link>
           </center>
-          <List1 />
+          {loading1 ? (
+            <center>
+              <Loading size="lg" />
+            </center>
+          ) : (
+            <Products listProducts={newProducts} />
+          )}
         </section>
         <section className="section">
           <center>
             <Link
-              href={"/collection/Am%20đao%20gia"}
+              to={"/collection/Am%20đao%20gia"}
               className="title main-color"
             >
               Âm đạo giả
             </Link>
           </center>
-          <List2 />
+          {loading2 ? (
+            <center>
+              <Loading size="lg" />
+            </center>
+          ) : (
+            <Products listProducts={list1} />
+          )}
         </section>
         <section className="section">
           <center>
             <Link
-              href="/collection/Am%20đao%20gia%20JAV%20Idol"
+              to="/collection/Am%20đao%20gia%20JAV%20Idol"
               className="title main-color"
             >
               Âm đạo giả Idols
             </Link>
           </center>
-          <List3 />
+          {loading3 ? (
+            <center>
+              <Loading size="lg" />
+            </center>
+          ) : (
+            <Products listProducts={list2} />
+          )}
         </section>
       </Container>
       <hr />

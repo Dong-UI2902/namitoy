@@ -18,16 +18,10 @@ export interface UserRespone extends Respone {
   user: User;
 }
 
-export interface ErrorProviderState {
-  username?: string;
-  password?: string;
-  passwordConfirmation?: string;
-}
-
 export interface AuthProviderState {
   user?: User;
   loading: boolean;
-  error?: ErrorProviderState;
+  error?: string;
 }
 
 export interface AuthCredential {

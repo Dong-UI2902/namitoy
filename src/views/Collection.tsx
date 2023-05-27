@@ -69,36 +69,38 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
   };
 
   useEffect(() => {
-    const arr = products.filter((item) => {
-      let isChecked = false;
-      let isCheckedPrice = false;
+    if (products.length > 0) {
+      const arr = products.filter((item) => {
+        let isChecked = false;
+        let isCheckedPrice = false;
 
-      if (selectedPrice.length > 0) {
-        selectedPrice.forEach((element) => {
-          const { key, limit } = filterPrice(element);
-          if (checkPrice(item.price, item.sale, key, limit)) {
-            isCheckedPrice = true;
-          }
-        });
-      } else {
-        isCheckedPrice = true;
-      }
+        if (selectedPrice.length > 0) {
+          selectedPrice.forEach((element) => {
+            const { key, limit } = filterPrice(element);
+            if (checkPrice(item.price, item.sale, key, limit)) {
+              isCheckedPrice = true;
+            }
+          });
+        } else {
+          isCheckedPrice = true;
+        }
 
-      if (selected.length > 0) {
-        if (selected.includes(item.brand)) isChecked = true;
-      } else {
-        isChecked = true;
-      }
+        if (selected.length > 0) {
+          if (selected.includes(item.brand)) isChecked = true;
+        } else {
+          isChecked = true;
+        }
 
-      if (isCheckedPrice && isChecked) return true;
+        if (isCheckedPrice && isChecked) return true;
 
-      return false;
-    });
+        return false;
+      });
 
-    setTemp(arr);
+      setTemp(arr);
 
-    if (selected.length <= 0 && selectedPrice.length <= 0)
-      return setTemp(products);
+      if (selected.length <= 0 && selectedPrice.length <= 0)
+        return setTemp(products);
+    }
   }, [selected, selectedPrice]);
 
   useEffect(() => {
@@ -106,18 +108,6 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
     if (key?._id) return getProductsByType(key._id, 0);
   }, []);
 
-  // @ts-ignore
-  const MockItem = ({ text }) => {
-    return (
-      <Card css={{ h: "$24", $$cardColor: "$colors$primary" }}>
-        <Card.Body>
-          <Text h6 size={15} color="white" css={{ mt: 0 }}>
-            {text}
-          </Text>
-        </Card.Body>
-      </Card>
-    );
-  };
   return (
     <section className="collection">
       <Container>

@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { Button, FormElement, Grid, Input } from "@nextui-org/react";
+import {
+  Button,
+  FormElement,
+  Grid,
+  Input,
+  Loading,
+  Text,
+} from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import { AuthCredential, useAuth } from "../../contexts/Auth";
-import { FaLock } from "react-icons/fa";
+import { FaLock, FaUser } from "react-icons/fa";
 
 const Login = () => {
   const { login, loading, error } = useAuth();
@@ -31,6 +38,7 @@ const Login = () => {
             name="username"
             onChange={handleChange}
             required={true}
+            contentLeft={<FaUser />}
           />
         </Grid>
         <Grid className="form__control">
@@ -44,9 +52,26 @@ const Login = () => {
             contentLeft={<FaLock />}
           />
         </Grid>
+        {error && (
+          <Grid xs={8} justify="center">
+            <Text size="$md" color="error">
+              {error}
+            </Text>
+          </Grid>
+        )}
         <Grid xs={8}>
-          <Button type="submit" color="success" className="form__btn" auto>
-            Đăng Nhập
+          <Button
+            type="submit"
+            color="success"
+            className="form__btn"
+            disabled={loading}
+            auto
+          >
+            {loading ? (
+              <Loading type="points" color="currentColor" size="sm" />
+            ) : (
+              "Đăng Nhập"
+            )}
           </Button>
         </Grid>
         <Grid>

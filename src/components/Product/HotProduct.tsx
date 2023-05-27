@@ -3,7 +3,6 @@ import { Grid, Text } from "@nextui-org/react";
 import MiniView from "./MiniView";
 import Slide from "./Slide";
 import { useProduct } from "../../contexts/Product";
-import CardProd from "./CardProd";
 
 const HotProduct = () => {
   const { getHotProduct, hot } = useProduct();
@@ -28,33 +27,30 @@ const HotProduct = () => {
         Các mặt hàng <br />
         cực hot hiện nay
       </Text>
-      {/*<center>*/}
-      {/*  <Link to="#" className="title main-color">*/}
-      {/*    Các mặt hàng <br />*/}
-      {/*    cực hot hiện nay*/}
-      {/*  </Link>*/}
-      {/*</center>*/}
-      <Grid.Container
-        css={{ padding: 0 }}
-        gap={2}
-        justify="center"
-        alignItems="center"
-      >
-        <Grid xs={12} md={6}>
-          <MiniView product={hot[position]} />
-        </Grid>
-        <Grid
-          xs={12}
-          md={6}
+      {hot.length > 0 && (
+        <Grid.Container
+          css={{ padding: 0 }}
+          gap={2}
           justify="center"
-          className="slide"
-          css={{ display: "unset!important" }}
+          alignItems="center"
         >
-          <div>
-            <Slide callback={callback} />
-          </div>
-        </Grid>
-      </Grid.Container>
+          <Grid xs={12} sm={7} md={6}>
+            <MiniView product={hot[position]} />
+          </Grid>
+          <Grid
+            xs={12}
+            sm={5}
+            md={6}
+            justify="center"
+            className="slide"
+            css={{ display: "unset!important" }}
+          >
+            <div>
+              <Slide hot={hot} callback={callback} />
+            </div>
+          </Grid>
+        </Grid.Container>
+      )}
     </div>
   );
 };

@@ -6,13 +6,13 @@ import { FavoriteProvider } from "../contexts/Favorite";
 
 const Providers: React.FC<{ children: any }> = ({ children }) => {
   return (
-    <AuthProvider>
-      <TypeProvider>
+    <TypeProvider>
+      <AuthProvider>
         <ProductProvider>
           <FavoriteProvider>{children}</FavoriteProvider>
         </ProductProvider>
-      </TypeProvider>
-    </AuthProvider>
+      </AuthProvider>
+    </TypeProvider>
   );
 };
 

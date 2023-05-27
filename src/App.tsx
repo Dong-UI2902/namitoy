@@ -9,8 +9,11 @@ import { Container } from "@nextui-org/react";
 import Footer from "./components/Footer";
 import "./styles/Breakpoint.scss";
 import Routers from "./views/Routers";
+import { useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App" style={{ backgroundColor: "#ffffff" }}>
       <Providers>
@@ -18,9 +21,14 @@ function App() {
         <Routers />
         <hr />
         <Container lg>
-          <section className="section" style={{ paddingBottom: 0 }}>
-            <Footer />
-          </section>
+          {location.pathname === "/login" ||
+          location.pathname === "/register" ? (
+            <></>
+          ) : (
+            <section className="section" style={{ paddingBottom: 0 }}>
+              <Footer />
+            </section>
+          )}
         </Container>
       </Providers>
     </div>
