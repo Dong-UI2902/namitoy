@@ -106,7 +106,7 @@ const ViewProduct = () => {
                   <Row justify="space-between">
                     <Col>
                       <Text weight="medium" className="main-color">
-                        Còn hàng
+                        {product.soldOld ? "Hết hàng" : "Còn hàng"}
                       </Text>
                       <Text weight="medium" className="price-color">
                         Sale:{" "}

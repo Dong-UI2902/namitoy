@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
 import {
   Badge,
   Button,
@@ -9,27 +9,30 @@ import {
   Text,
 } from "@nextui-org/react";
 import { useAuth } from "../../contexts/Auth";
-import { useLocation } from "react-router-dom";
+import {
+  useLocation,
+  useSearchParams,
+  Link as LinkSearch,
+} from "react-router-dom";
 import DropdownUser from "./DropdownUser";
 import { useType } from "../../contexts/Type/Provider";
 import { FaAngleDown, FaHeart } from "react-icons/fa";
 import { useFavorite } from "../../contexts/Favorite";
-import { useProduct } from "../../contexts/Product";
-import productService from "../../contexts/Product/services";
 
 const Nav = () => {
   const { user } = useAuth();
   const { totalFavorite, getTotalFavorite } = useFavorite();
   const { pathname } = useLocation();
   const { types, handleHref } = useType();
-  const { search } = useProduct();
   const [input, setInput] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searching = searchParams.get("key");
+  const myRef = useRef(null);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (input) {
-      search(input);
-    }
+    // @ts-ignore
+    myRef.current.click();
   };
 
   const checkRoute = (route: string) => {
@@ -44,6 +47,14 @@ const Nav = () => {
       getTotalFavorite();
     }
   }, []);
+
+  useEffect(() => {
+    if (searching) {
+      setInput(searching);
+    } else {
+      setInput("");
+    }
+  }, [searching]);
 
   return (
     <Navbar variant="sticky" style={{ background: "#fff", zIndex: "99999" }}>
@@ -200,40 +211,53 @@ const Nav = () => {
           }}
         >
           <form onSubmit={handleSubmit} style={{ display: "flex" }}>
-            <Input
-              clearable
-              contentLeft={
-                <svg
-                  fill="none"
-                  height={16 || 24}
-                  viewBox="0 0 24 24"
-                  width={16 || 24}
-                >
-                  <path
-                    d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"
-                    stroke={"var(--nextui-colors-accents6)"}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
+            {/*<Input*/}
+            {/*  clearable*/}
+            {/*  contentLeft={*/}
+            {/*    <svg*/}
+            {/*      fill="none"*/}
+            {/*      height={16 || 24}*/}
+            {/*      viewBox="0 0 24 24"*/}
+            {/*      width={16 || 24}*/}
+            {/*    >*/}
+            {/*      <path*/}
+            {/*        d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"*/}
+            {/*        stroke={"var(--nextui-colors-accents6)"}*/}
+            {/*        strokeLinecap="round"*/}
+            {/*        strokeLinejoin="round"*/}
+            {/*        strokeWidth={2}*/}
+            {/*      />*/}
+            {/*    </svg>*/}
+            {/*  }*/}
+            {/*  contentLeftStyling={false}*/}
+            {/*  css={{*/}
+            {/*    w: "100%",*/}
+            {/*    "@xsMax": {*/}
+            {/*      mw: "300px",*/}
+            {/*    },*/}
+            {/*    "& .nextui-input-content--left": {*/}
+            {/*      h: "100%",*/}
+            {/*      ml: "$4",*/}
+            {/*      dflex: "center",*/}
+            {/*    },*/}
+            {/*  }}*/}
+            {/*  value={input}*/}
+            {/*  placeholder="Search..."*/}
+            {/*  onChange={(e) => setInput(e.target.value)}*/}
+            {/*/>*/}
+            <div className="input__control">
+              <div className="input">
+                <div>
+                  <input
+                    type="text"
+                    id="input1"
+                    value={input}
+                    placeholder="Tìm kiếm..."
+                    onChange={(e) => setInput(e.target.value)}
                   />
-                </svg>
-              }
-              contentLeftStyling={false}
-              css={{
-                w: "100%",
-                "@xsMax": {
-                  mw: "300px",
-                },
-                "& .nextui-input-content--left": {
-                  h: "100%",
-                  ml: "$4",
-                  dflex: "center",
-                },
-              }}
-              value={input}
-              placeholder="Search..."
-              onChange={(e) => setInput(e.target.value)}
-            />
+                </div>
+              </div>
+            </div>
             <Button
               bordered
               color="primary"
@@ -243,6 +267,14 @@ const Nav = () => {
             >
               Tìm
             </Button>
+            <LinkSearch
+              to={"/search?key=" + input}
+              className="btn btn-outline-success"
+              style={{ display: "none" }}
+              ref={myRef}
+            >
+              Tìm
+            </LinkSearch>
           </form>
         </Navbar.Item>
         {!user ? (

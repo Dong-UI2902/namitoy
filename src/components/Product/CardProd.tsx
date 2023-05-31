@@ -11,19 +11,33 @@ import { Link } from "react-router-dom";
 const CardProd: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <Link to={`/product/${product._id}`}>
-      <Card isPressable css={{ filter: "none", borderRadius: "unset" }}>
+      <Card
+        isPressable
+        css={{
+          filter: "none",
+          borderRadius: "unset",
+        }}
+      >
+        {product.soldOld && <div className="sold_out">Hết hàng</div>}
         <Card.Header css={{ position: "absolute", zIndex: 1, top: 1 }}>
           <Text h4 className="main-color">
             <GetPercent sale={product.sale} price={product.price} />
           </Text>
         </Card.Header>
-        <Card.Body css={{ p: 0 }}>
+        <Card.Body
+          css={{
+            p: 0,
+          }}
+        >
           <Card.Image
             src={fixImage(product.image[0])}
             objectFit="cover"
             width={"auto"}
-            height={250}
+            height={300}
             alt={product.title}
+            css={{
+              filter: `${product.soldOld ? "grayscale(1)" : "grayscale(0)"}`,
+            }}
           />
         </Card.Body>
         <Card.Footer css={{ display: "unset" }}>

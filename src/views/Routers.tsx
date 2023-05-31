@@ -8,6 +8,7 @@ import { useType } from "../contexts/Type/Provider";
 import Collection from "./Collection";
 import Favorites from "./Favorites";
 import Layout from "../components/Layout";
+import Searching from "./Searching";
 
 const Routers = () => {
   const { types, handleHref } = useType();
@@ -37,6 +38,7 @@ const Routers = () => {
         <Route path="/login" element={<Auth auth={"login"} />} />
         <Route path="/register" element={<Auth auth={"register"} />} />
         <Route path="/favorites/" element={<Favorites />} />
+        <Route path="/search" element={<Searching />} />
       </Routes>
     </Layout>
   );
