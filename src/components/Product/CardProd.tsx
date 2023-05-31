@@ -64,7 +64,9 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
               }}
               del
             >
-              {product.sale && <FormatMoney price={product.sale} />}
+              {(product.sale && Number(product.sale)) > 0 && (
+                <FormatMoney price={product.sale} />
+              )}
             </Text>
           </Row>
         </Card.Footer>

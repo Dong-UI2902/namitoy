@@ -15,8 +15,9 @@ import { Product, useProduct } from "../../../contexts/Product";
 import { IconButton } from "../IconButton";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FormatMoney } from "../../../contexts/Product/Constain";
+import { DATA, FormatMoney } from "../../../contexts/Product/Constain";
 import { StyledBadge } from "../StyledBadge";
+import productService from "../../../contexts/Product/services";
 const columns = [
   {
     key: "title",
@@ -81,11 +82,15 @@ const ProductsTable = () => {
     updateProduct(product);
   };
 
-  // const addAllProd = async () => {
-  //   for (const item of DATA) {
-  //     await productService.store(item).then().catch();
-  //   }
-  // };
+  const addAllProd = async () => {
+    for (const item of DATA) {
+      try {
+        await productService.store(item).then().catch().finally();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
 
   const handleChange = (page: number) => {
     getProducts(page);

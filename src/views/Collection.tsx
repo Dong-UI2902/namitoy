@@ -137,7 +137,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
                   <Collapse.Group shadow accordion={false}>
                     <Collapse
                       expanded
-                      title={`Thương hiệu(${brands.length})`}
+                      title={`Thương hiệu`}
                       arrowIcon={<FaAngleRight />}
                       css={{
                         "@xs": {
