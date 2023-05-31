@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, Loading, Text } from "@nextui-org/react";
+import { Container, Grid, Loading, Text, Link } from "@nextui-org/react";
 import "../styles/Store.scss";
 import CardPolicy from "../components/Privacy Policy/CardPolicy";
 import HotProduct from "../components/Product/HotProduct";
-import { Link } from "react-router-dom";
 import Community from "../components/Community/Community";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ScrollReveal from "scrollreveal";
@@ -135,23 +134,61 @@ const Home = () => {
         <section className="policy section">
           <Grid.Container gap={2}>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy />
+              <CardPolicy title={"Cam kết"}>
+                <Text>
+                  Ship hàng kín đáo, che tên sản phẩm, đóng gói kĩ càng. Bảo mật
+                  danh tính.
+                  <br />
+                  5% Discount cho đơn hàng tiếp theo với tất cả các reviews kèm
+                  hình ảnh toys cho shop.
+                </Text>
+              </CardPolicy>
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy />
+              <CardPolicy title={"Thông tin liên hệ"}>
+                <Text>
+                  Tư vấn online/hotline/Zalo/Whatsapp: 0933032964 – Namitoys
+                </Text>
+                Fanpage:{" "}
+                <Link
+                  color="secondary"
+                  href="https://www.facebook.com/namitoyshop"
+                >
+                  <div
+                    style={{
+                      whiteSpace: "nowrap",
+                      width: "250px",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    https://www.facebook.com/namitoyshop
+                  </div>
+                </Link>
+              </CardPolicy>
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy />
+              <CardPolicy title={"Hình thức giao hàng"}>
+                Cam kết hàng chính hãng, đầy đủ mã QR và mã vạch.
+                <br />
+                Shop có kho hàng phong phú, nhiều mẫu mã và luôn cập nhật
+                onahole trendy bên Nhật Bản cho quý khách lựa chọn.
+              </CardPolicy>
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy />
+              <CardPolicy title={"Tiêu chí"}>
+                Chúng tôi hứa sẽ mang đến cho khách hàng dịch vụ nhanh hơn, tốt
+                hơn và sản phẩm ngày càng tốt hơn, rất mong được sự đóng góp ý
+                kiến quý báu của quý khách để chúng tôi phát triển trong tương
+                lai.
+              </CardPolicy>
             </Grid>
           </Grid.Container>
         </section>
         <section className="section">{/*<HotProduct />*/}</section>
         <section className="section">
           <center>
-            <Link to="#" className="title main-color">
+            <Link href={"#"} className="title main-color">
               Hàng mới cập nhật
             </Link>
           </center>
@@ -166,7 +203,7 @@ const Home = () => {
         <section className="section">
           <center>
             <Link
-              to={"/collection/Am%20đao%20gia"}
+              href={"/collection/Am%20đao%20gia"}
               className="title main-color"
             >
               Âm đạo giả
@@ -183,7 +220,7 @@ const Home = () => {
         <section className="section">
           <center>
             <Link
-              to="/collection/Am%20đao%20gia%20JAV%20Idol"
+              href="/collection/Am%20đao%20gia%20JAV%20Idol"
               className="title main-color"
             >
               Âm đạo giả Idols

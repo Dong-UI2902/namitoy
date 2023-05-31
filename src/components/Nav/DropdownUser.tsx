@@ -40,10 +40,15 @@ const DropdownUser = () => {
             {user?.username}
           </Text>
         </Dropdown.Item>
-        <Dropdown.Item key="manager" withDivider>
-          Quản lý cửa hàng
-        </Dropdown.Item>
-        <Dropdown.Item key="orders">Đơn hàng</Dropdown.Item>
+        {user?.role === "ADMIN" ? (
+          <Dropdown.Item key="manager" withDivider>
+            Quản lý cửa hàng
+          </Dropdown.Item>
+        ) : (
+          <Dropdown.Item key="manager" withDivider css={{ display: "none" }}>
+            Quản lý cửa hàng
+          </Dropdown.Item>
+        )}
         <Dropdown.Item key="logout" withDivider color="error">
           Log Out
         </Dropdown.Item>

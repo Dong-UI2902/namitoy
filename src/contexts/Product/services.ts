@@ -71,6 +71,14 @@ async function destroy(_id: string): Promise<void> {
   return response.data;
 }
 
+async function search(name: string): Promise<ArrProductResponse> {
+  const response = await Api.get(`${PATH}/search/key`, {
+    params: { name: name },
+  });
+
+  return response.data;
+}
+
 export default {
   getProducts,
   getProductsByType,
@@ -81,4 +89,5 @@ export default {
   store,
   update,
   destroy,
+  search,
 };

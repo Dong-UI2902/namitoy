@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import {
+  Button,
   Col,
+  Input,
   Loading,
   Pagination,
   Row,
@@ -13,9 +15,8 @@ import { Product, useProduct } from "../../../contexts/Product";
 import { IconButton } from "../IconButton";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { DATA, FormatMoney } from "../../../contexts/Product/Constain";
+import { FormatMoney } from "../../../contexts/Product/Constain";
 import { StyledBadge } from "../StyledBadge";
-import productService from "../../../contexts/Product/services";
 const columns = [
   {
     key: "title",
@@ -52,8 +53,25 @@ const columns = [
 ];
 
 const ProductsTable = () => {
-  const { products, getProducts, updateProduct, loading, deleteProduct, meta } =
-    useProduct();
+  const {
+    products,
+    getProducts,
+    updateProduct,
+    loading,
+    deleteProduct,
+    meta,
+    search,
+  } = useProduct();
+  const [input, setInput] = useState("");
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (input) {
+      search(input);
+    } else {
+      getProducts(meta.page);
+    }
+  };
 
   useEffect(() => {
     getProducts(1);
@@ -83,6 +101,45 @@ const ProductsTable = () => {
         </center>
       ) : (
         <>
+          <form onSubmit={handleSubmit} style={{ display: "flex" }}>
+            <Input
+              clearable
+              contentLeft={
+                <svg
+                  fill="none"
+                  height={16 || 24}
+                  viewBox="0 0 24 24"
+                  width={16 || 24}
+                >
+                  <path
+                    d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"
+                    stroke={"var(--nextui-colors-accents6)"}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
+                </svg>
+              }
+              contentLeftStyling={false}
+              css={{
+                w: "100%",
+                "@xsMax": {
+                  mw: "300px",
+                },
+                "& .nextui-input-content--left": {
+                  h: "100%",
+                  ml: "$4",
+                  dflex: "center",
+                },
+              }}
+              value={input}
+              placeholder="Search..."
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <Button bordered color="primary" auto type="submit">
+              Tìm
+            </Button>
+          </form>
           <Table
             aria-label="Example table with dynamic content"
             css={{

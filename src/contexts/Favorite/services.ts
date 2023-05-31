@@ -27,9 +27,18 @@ async function removeFavorite(_id: string): Promise<void> {
   return response.data;
 }
 
+async function isFavorite(productId: string): Promise<void> {
+  const response = await Api.get(PATH, {
+    params: { productId },
+  });
+
+  return response.data;
+}
+
 export default {
   addToFavorite,
   getFavorites,
   getTotalFavorites,
   removeFavorite,
+  isFavorite,
 };

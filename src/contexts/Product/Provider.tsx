@@ -123,6 +123,15 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
+  const search = (name: string) => {
+    setLoading(true);
+    productService
+      .search(name)
+      .then((res) => setProducts(res.data))
+      .catch()
+      .finally(() => setLoading(false));
+  };
+
   const memoValue = useMemo(
     () => ({
       loading,
@@ -142,6 +151,7 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       findById,
       deleteProduct,
       getHotProduct,
+      search,
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [product, products, meta, hot, loading, error]

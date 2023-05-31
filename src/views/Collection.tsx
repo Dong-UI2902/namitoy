@@ -136,8 +136,13 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
                   <Collapse.Group shadow accordion={false}>
                     <Collapse
                       expanded
-                      title="Thương hiệu"
+                      title={`Thương hiệu(${brands.length})`}
                       arrowIcon={<FaAngleRight />}
+                      css={{
+                        "@xs": {
+                          mw: "100px!important",
+                        },
+                      }}
                     >
                       <Checkbox.Group
                         size="xs"

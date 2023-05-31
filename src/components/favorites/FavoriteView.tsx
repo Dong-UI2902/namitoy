@@ -3,6 +3,7 @@ import { Favorite, useFavorite } from "../../contexts/Favorite";
 import { Card, Grid, Text, Tooltip } from "@nextui-org/react";
 import { FaTrashAlt } from "react-icons/fa";
 import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
+import "../../styles/MiniView.scss";
 
 const FavoriteView: React.FC<{ favorite: Favorite }> = ({ favorite }) => {
   const { removeFavorite } = useFavorite();

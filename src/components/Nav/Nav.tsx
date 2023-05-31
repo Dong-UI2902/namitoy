@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { SyntheticEvent, useEffect, useState } from "react";
 import {
   Badge,
   Button,
@@ -14,12 +14,23 @@ import DropdownUser from "./DropdownUser";
 import { useType } from "../../contexts/Type/Provider";
 import { FaAngleDown, FaHeart } from "react-icons/fa";
 import { useFavorite } from "../../contexts/Favorite";
+import { useProduct } from "../../contexts/Product";
+import productService from "../../contexts/Product/services";
 
 const Nav = () => {
   const { user } = useAuth();
   const { totalFavorite, getTotalFavorite } = useFavorite();
   const { pathname } = useLocation();
-  const { types } = useType();
+  const { types, handleHref } = useType();
+  const { search } = useProduct();
+  const [input, setInput] = useState("");
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    if (input) {
+      search(input);
+    }
+  };
 
   const checkRoute = (route: string) => {
     const str = pathname.replace("/collection/", "");
@@ -188,38 +199,51 @@ const Nav = () => {
             },
           }}
         >
-          <Input
-            clearable
-            contentLeft={
-              <svg
-                fill="none"
-                height={16 || 24}
-                viewBox="0 0 24 24"
-                width={16 || 24}
-              >
-                <path
-                  d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"
-                  stroke={"var(--nextui-colors-accents6)"}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                />
-              </svg>
-            }
-            contentLeftStyling={false}
-            css={{
-              w: "100%",
-              "@xsMax": {
-                mw: "300px",
-              },
-              "& .nextui-input-content--left": {
-                h: "100%",
-                ml: "$4",
-                dflex: "center",
-              },
-            }}
-            placeholder="Search..."
-          />
+          <form onSubmit={handleSubmit} style={{ display: "flex" }}>
+            <Input
+              clearable
+              contentLeft={
+                <svg
+                  fill="none"
+                  height={16 || 24}
+                  viewBox="0 0 24 24"
+                  width={16 || 24}
+                >
+                  <path
+                    d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"
+                    stroke={"var(--nextui-colors-accents6)"}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                  />
+                </svg>
+              }
+              contentLeftStyling={false}
+              css={{
+                w: "100%",
+                "@xsMax": {
+                  mw: "300px",
+                },
+                "& .nextui-input-content--left": {
+                  h: "100%",
+                  ml: "$4",
+                  dflex: "center",
+                },
+              }}
+              value={input}
+              placeholder="Search..."
+              onChange={(e) => setInput(e.target.value)}
+            />
+            <Button
+              bordered
+              color="primary"
+              auto
+              css={{ padding: "0.7rem!important" }}
+              type="submit"
+            >
+              Tìm
+            </Button>
+          </form>
         </Navbar.Item>
         {!user ? (
           <Navbar.Item>
@@ -251,7 +275,7 @@ const Nav = () => {
               css={{
                 minWidth: "100%",
               }}
-              href="#"
+              href={`/collection/${handleHref(item.name)}`}
             >
               {item.name}
             </Link>

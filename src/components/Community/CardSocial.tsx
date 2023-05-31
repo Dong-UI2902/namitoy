@@ -32,7 +32,16 @@ const CardSocial: React.FC<{
         </Card.Body>
         <Card.Footer>
           <Link color="primary" target="_blank" href={handleLink()}>
-            {href}
+            <div
+              style={{
+                whiteSpace: "nowrap",
+                width: "300px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+            >
+              {href}
+            </div>
           </Link>
         </Card.Footer>
       </Card>
