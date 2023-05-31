@@ -30,6 +30,8 @@ const Register = () => {
     register(input);
   };
 
+  document.title = `Đăng ký`;
+
   return (
     <form onSubmit={handleSubmit}>
       <Grid.Container gap={2} justify="center">

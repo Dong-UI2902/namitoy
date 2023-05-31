@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Button, Text, Input, FormElement } from "@nextui-org/react";
+import { Button, FormElement, Input, Modal, Text } from "@nextui-org/react";
 import { useType } from "../../../contexts/Type/Provider";
 
 const TypeForm: React.FC<{

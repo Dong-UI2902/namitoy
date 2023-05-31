@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Card,
   Checkbox,
   Collapse,
   Container,
@@ -105,6 +104,8 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
 
   useEffect(() => {
     const key = types.find((item) => item.name === path);
+    // @ts-ignore
+    document.title = key.name;
     if (key?._id) return getProductsByType(key._id, 0);
   }, []);
 

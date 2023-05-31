@@ -3,7 +3,6 @@ import "../styles/Auth.scss";
 import Login from "../components/auth/Login";
 import { Container } from "@nextui-org/react";
 import Register from "../components/auth/Register";
-import { useAuth } from "../contexts/Auth";
 
 const Auth: React.FC<{ auth: string }> = ({ auth }) => {
   return (

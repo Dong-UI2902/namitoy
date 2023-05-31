@@ -102,40 +102,19 @@ const ProductsTable = () => {
       ) : (
         <>
           <form onSubmit={handleSubmit} style={{ display: "flex" }}>
-            <Input
-              clearable
-              contentLeft={
-                <svg
-                  fill="none"
-                  height={16 || 24}
-                  viewBox="0 0 24 24"
-                  width={16 || 24}
-                >
-                  <path
-                    d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"
-                    stroke={"var(--nextui-colors-accents6)"}
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
+            <div className="input__control">
+              <div className="input">
+                <div>
+                  <input
+                    type="text"
+                    id="input1"
+                    value={input}
+                    placeholder="Tìm kiếm..."
+                    onChange={(e) => setInput(e.target.value)}
                   />
-                </svg>
-              }
-              contentLeftStyling={false}
-              css={{
-                w: "100%",
-                "@xsMax": {
-                  mw: "300px",
-                },
-                "& .nextui-input-content--left": {
-                  h: "100%",
-                  ml: "$4",
-                  dflex: "center",
-                },
-              }}
-              value={input}
-              placeholder="Search..."
-              onChange={(e) => setInput(e.target.value)}
-            />
+                </div>
+              </div>
+            </div>
             <Button bordered color="primary" auto type="submit">
               Tìm
             </Button>
@@ -202,10 +181,7 @@ const ProductsTable = () => {
                       {/*</Col>*/}
                       <Col css={{ d: "flex" }}>
                         <Tooltip content="Chỉnh sửa">
-                          <Link
-                            to={`/manager/form/${item._id}`}
-                            target="_blank"
-                          >
+                          <Link to={`/manager/form/${item._id}`}>
                             <IconButton>
                               <FaEdit size={20} fill="#979797" />
                             </IconButton>

@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import { Button, Container, Row, Text } from "@nextui-org/react";
-import { FormatMoney } from "../contexts/Product/Constain";
+import { Container, Text } from "@nextui-org/react";
 import { Favorite, useFavorite } from "../contexts/Favorite";
-import { Link } from "react-router-dom";
 import FavoriteView from "../components/favorites/FavoriteView";
 
 const Favorites = () => {

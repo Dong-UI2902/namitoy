@@ -1,8 +1,9 @@
 import React from "react";
 import { Card, Grid, Text } from "@nextui-org/react";
 
-const CardPolicy: React.FC<{ title: string; children: any }> = ({
+const CardPolicy: React.FC<{ title: string; url: string; children: any }> = ({
   title,
+  url,
   children,
 }) => {
   return (
@@ -10,7 +11,7 @@ const CardPolicy: React.FC<{ title: string; children: any }> = ({
       <Card.Header>
         <img
           alt="nextui logo"
-          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+          src={`/assets/img/${url}.png`}
           width="34px"
           height="34px"
         />

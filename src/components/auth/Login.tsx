@@ -28,6 +28,8 @@ const Login = () => {
     login(input);
   };
 
+  document.title = `Đăng nhập`;
+
   return (
     <form onSubmit={handleSubmit}>
       <Grid.Container gap={2} justify="center">

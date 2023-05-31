@@ -16,7 +16,6 @@ import { FormatMoney, GetPercent } from "../contexts/Product/Constain";
 import { useType } from "../contexts/Type/Provider";
 import { FaHeart } from "react-icons/fa";
 import productService from "../contexts/Product/services";
-import favoriteService from "../contexts/Favorite/services";
 import Products from "../components/Product/Products";
 import { useFavorite } from "../contexts/Favorite";
 import { FAVORITE } from "../contexts/Favorite/Constain";
@@ -52,7 +51,6 @@ const ViewProduct = () => {
       // @ts-ignore
       document.getElementById("description").innerHTML = product.description;
       document.title = product.title;
-      console.log("a");
       productService
         .getSameProductsByType(product.type._id)
         .then((res) => setSameProducts(res.data))

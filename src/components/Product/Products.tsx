@@ -1,8 +1,7 @@
 import React from "react";
-import { Card, Grid, Row, Spacer, Text } from "@nextui-org/react";
+import { Grid } from "@nextui-org/react";
 import "../../styles/Product.scss";
 import { Product } from "../../contexts/Product";
-import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
 import CardProd from "./CardProd";
 
 const Products: React.FC<{ listProducts: Product[] }> = ({ listProducts }) => {

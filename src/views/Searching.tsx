@@ -101,6 +101,7 @@ const Searching = () => {
 
   useEffect(() => {
     if (searching) {
+      document.title = `Tìm kiếm theo ${searching}`;
       search(searching);
     }
   }, [searching]);

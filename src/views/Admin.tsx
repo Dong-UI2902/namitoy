@@ -7,6 +7,8 @@ import ProductsTable from "../components/Admin/product/ProductsTable";
 import TypesTable from "../components/Admin/type/TypesTable";
 
 const Admin: React.FC<{ path: string }> = ({ path }) => {
+  document.title = `Quản lý cửa hàng`;
+
   return (
     <div className="admin section">
       <Container xl>

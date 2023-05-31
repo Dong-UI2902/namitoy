@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Container, Grid, Loading, Text, Link } from "@nextui-org/react";
+import { Container, Grid, Link, Loading, Text } from "@nextui-org/react";
 import "../styles/Store.scss";
 import CardPolicy from "../components/Privacy Policy/CardPolicy";
-import HotProduct from "../components/Product/HotProduct";
 import Community from "../components/Community/Community";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import ScrollReveal from "scrollreveal";
@@ -58,6 +57,7 @@ const Home = () => {
     sr.reveal(`.home__toy:nth-child(2)`, { origin: "top", delay: 1400 });
     sr.reveal(`.home__toy:nth-child(3)`, { origin: "top", delay: 1500 });
     getNewProducts();
+    document.title = `Trang chủ`;
   }, []);
 
   return (
@@ -134,7 +134,7 @@ const Home = () => {
         <section className="policy section">
           <Grid.Container gap={2}>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy title={"Cam kết"}>
+              <CardPolicy title={"Cam kết"} url="ui1">
                 <Text>
                   Ship hàng kín đáo, che tên sản phẩm, đóng gói kĩ càng. Bảo mật
                   danh tính.
@@ -145,7 +145,7 @@ const Home = () => {
               </CardPolicy>
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy title={"Thông tin liên hệ"}>
+              <CardPolicy title={"Thông tin liên hệ"} url="ui2">
                 <Text>
                   Tư vấn online/hotline/Zalo/Whatsapp: 0933032964 – Namitoys
                 </Text>
@@ -168,7 +168,7 @@ const Home = () => {
               </CardPolicy>
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy title={"Hình thức giao hàng"}>
+              <CardPolicy title={"Hình thức giao hàng"} url="ui3">
                 Cam kết hàng chính hãng, đầy đủ mã QR và mã vạch.
                 <br />
                 Shop có kho hàng phong phú, nhiều mẫu mã và luôn cập nhật
@@ -176,7 +176,7 @@ const Home = () => {
               </CardPolicy>
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy title={"Tiêu chí"}>
+              <CardPolicy title={"Tiêu chí"} url="ui4">
                 Chúng tôi hứa sẽ mang đến cho khách hàng dịch vụ nhanh hơn, tốt
                 hơn và sản phẩm ngày càng tốt hơn, rất mong được sự đóng góp ý
                 kiến quý báu của quý khách để chúng tôi phát triển trong tương

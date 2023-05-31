@@ -1,11 +1,10 @@
 import React from "react";
-import { Card, Text, Grid, Button, Spacer, Row } from "@nextui-org/react";
+import { Button, Card, Grid, Row, Spacer, Text } from "@nextui-org/react";
 import "../../styles/MiniView.scss";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FaRegStar } from "react-icons/fa";
 import { Product } from "../../contexts/Product";
 import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
-import { Link } from "react-router-dom";
 
 const MiniView: React.FC<{ product: Product }> = ({ product }) => {
   return (

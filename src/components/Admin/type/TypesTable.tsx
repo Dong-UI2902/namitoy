@@ -1,22 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-  Col,
-  FormElement,
-  Input,
-  Loading,
-  Row,
-  Table,
-  Tooltip,
-} from "@nextui-org/react";
+import { Col, Loading, Row, Table, Tooltip } from "@nextui-org/react";
 import { useType } from "../../../contexts/Type/Provider";
-import { Link } from "react-router-dom";
 import { IconButton } from "../IconButton";
-import {
-  FaCheckCircle,
-  FaEdit,
-  FaTimesCircle,
-  FaTrashAlt,
-} from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Type } from "../../../contexts/Type";
 import { TYPE } from "../../../contexts/Type/constain";
 import TypeForm from "./TypeForm";

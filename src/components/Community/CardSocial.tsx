@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Grid, Text, Link } from "@nextui-org/react";
+import { Card, Grid, Link, Text } from "@nextui-org/react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { IconContext } from "react-icons";
 

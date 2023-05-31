@@ -1,18 +1,10 @@
 import React, { SyntheticEvent, useEffect, useRef, useState } from "react";
-import {
-  Badge,
-  Button,
-  Dropdown,
-  Input,
-  Link,
-  Navbar,
-  Text,
-} from "@nextui-org/react";
+import { Badge, Button, Dropdown, Link, Navbar, Text } from "@nextui-org/react";
 import { useAuth } from "../../contexts/Auth";
 import {
+  Link as LinkSearch,
   useLocation,
   useSearchParams,
-  Link as LinkSearch,
 } from "react-router-dom";
 import DropdownUser from "./DropdownUser";
 import { useType } from "../../contexts/Type/Provider";
