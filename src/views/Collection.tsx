@@ -139,11 +139,6 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
                       expanded
                       title={`Thương hiệu`}
                       arrowIcon={<FaAngleRight />}
-                      css={{
-                        "@xs": {
-                          mw: "100px!important",
-                        },
-                      }}
                     >
                       <Checkbox.Group
                         size="xs"
