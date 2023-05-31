@@ -35,9 +35,6 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
             width={"auto"}
             height={300}
             alt={product.title}
-            css={{
-              filter: `${product.soldOld ? "grayscale(1)" : "grayscale(0)"}`,
-            }}
           />
         </Card.Body>
         <Card.Footer css={{ display: "unset" }}>
