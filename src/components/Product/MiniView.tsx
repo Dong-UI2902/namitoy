@@ -5,8 +5,22 @@ import "../../styles/MiniView.scss";
 import { FaRegStar } from "react-icons/fa";
 import { Product } from "../../contexts/Product";
 import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
+import { Link } from "react-router-dom";
+import { useFavorite } from "../../contexts/Favorite";
+import { FAVORITE } from "../../contexts/Favorite/Constain";
+import { useAuth } from "../../contexts/Auth";
+import Noti from "../Admin/Noti";
 
 const MiniView: React.FC<{ product: Product }> = ({ product }) => {
+  const { addToFavorite } = useFavorite();
+  const { user } = useAuth();
+  const [visible, setVisible] = React.useState(false);
+
+  const handleClick = () => {
+    if (user?._id) return addToFavorite({ ...FAVORITE, product });
+    return setVisible(true);
+  };
+
   return (
     <div className="view">
       {product?._id ? (
@@ -65,13 +79,20 @@ const MiniView: React.FC<{ product: Product }> = ({ product }) => {
                   </Row>
                 </Card.Body>
                 <Card.Footer>
-                  <Button className="btn" auto>
+                  <Button className="btn" auto onClick={handleClick}>
                     Yêu thích
                   </Button>
                   <Spacer x={1} />
-                  <Button bordered className="border main-color" auto>
-                    Xem thêm
-                  </Button>
+                  <Link to={`/product/${product._id}`}>
+                    <Button
+                      bordered
+                      className="border main-color"
+                      auto
+                      disabled
+                    >
+                      Xem thêm
+                    </Button>
+                  </Link>
                 </Card.Footer>
               </Card>
             </Grid>
@@ -80,6 +101,25 @@ const MiniView: React.FC<{ product: Product }> = ({ product }) => {
       ) : (
         <></>
       )}
+      <Noti
+        visible={visible}
+        setVisible={setVisible}
+        btnHandle={
+          <Button
+            bordered
+            auto
+            onPress={() => (window.location.href = "/login")}
+          >
+            Đăng nhập
+          </Button>
+        }
+      >
+        <center>
+          Bạn chưa đăng nhập.
+          <br />
+          Hãy đăng nhập để lưu những sản phẩm mà mình yêu thích nhé!
+        </center>
+      </Noti>
     </div>
   );
 };

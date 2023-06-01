@@ -19,7 +19,9 @@ const Community = () => {
         <Grid xs={12} sm={4}>
           <CardSocial
             name={"Cão Yêu Chó Mèo"}
-            desc={"Namichu - Người đứng đầu cộng đồng Cao Nhân Luôn Bay Group"}
+            desc={
+              "Nơi các cao nhân giao lưu, trao đổi chiêu thức và post SEGGS"
+            }
             href={"https://www.facebook.com/groups/ca0xyeuchomeo"}
           >
             <FaUsers />
@@ -28,7 +30,9 @@ const Community = () => {
         <Grid xs={12} sm={4}>
           <CardSocial
             name={"Discord"}
-            desc={"Namichu - Người đứng đầu cộng đồng Cao Nhân Luôn Bay Group"}
+            desc={
+              "NSFW Discord, đầy đủ uncen 18+ . Chơi game và giao lưu chat chit"
+            }
             href={"https://discord.gg/caoxbanzai"}
           >
             <FaDiscord fill={"rgb(114, 137, 218)"} />

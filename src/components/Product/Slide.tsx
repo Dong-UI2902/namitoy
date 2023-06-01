@@ -18,12 +18,10 @@ const Slide: React.FC<{
   }, [hot]);
 
   return (
-    <div style={{ minHeight: "300px" }}>
+    <div style={{ minHeight: "375px" }}>
       {slides.length > 0 ? (
         <Carousel
           slides={slides}
-          autoplay={true}
-          interval={3000}
           onSlideChange={callback}
           swipeToSlide={true}
         />

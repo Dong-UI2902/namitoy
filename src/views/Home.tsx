@@ -8,6 +8,7 @@ import ScrollReveal from "scrollreveal";
 import { Product } from "../contexts/Product";
 import productService from "../contexts/Product/services";
 import Products from "../components/Product/Products";
+import HotProduct from "../components/Product/HotProduct";
 
 export const sr = ScrollReveal({
   origin: "top",
@@ -134,7 +135,7 @@ const Home = () => {
         <section className="policy section">
           <Grid.Container gap={2}>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy title={"Cam kết"} url="ui1">
+              <CardPolicy title={"Cam kết & Giao hàng"} url="ui1">
                 <Text>
                   Ship hàng kín đáo, che tên sản phẩm, đóng gói kĩ càng. Bảo mật
                   danh tính.
@@ -177,15 +178,16 @@ const Home = () => {
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
               <CardPolicy title={"Tiêu chí"} url="ui4">
-                Chúng tôi hứa sẽ mang đến cho khách hàng dịch vụ nhanh hơn, tốt
-                hơn và sản phẩm ngày càng tốt hơn, rất mong được sự đóng góp ý
-                kiến quý báu của quý khách để chúng tôi phát triển trong tương
-                lai.
+                Chúng tôi sẽ mang đến cho khách hàng dịch vụ nhanh hơn, tốt hơn
+                và sản phẩm ngày càng tốt hơn, rất mong được sự đóng góp ý kiến
+                quý báu của quý khách để chúng tôi phát triển trong tương lai.
               </CardPolicy>
             </Grid>
           </Grid.Container>
         </section>
-        <section className="section">{/*<HotProduct />*/}</section>
+        <section className="section">
+          <HotProduct />
+        </section>
         <section className="section">
           <center>
             <Link href={"#"} className="title main-color">
