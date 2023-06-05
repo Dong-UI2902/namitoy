@@ -123,10 +123,10 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
-  const search = (name: string) => {
+  const search = (name: string | null, brand: string | null) => {
     setLoading(true);
     productService
-      .search(name)
+      .search(name, brand)
       .then((res) => setProducts(res.data))
       .catch()
       .finally(() => setLoading(false));

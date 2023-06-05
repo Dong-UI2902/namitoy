@@ -4,7 +4,11 @@ import "../../styles/MiniView.scss";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FaRegStar } from "react-icons/fa";
 import { Product } from "../../contexts/Product";
-import { fixImage, FormatMoney } from "../../contexts/Product/Constain";
+import {
+  fixImage,
+  FormatMoney,
+  GetPercent,
+} from "../../contexts/Product/Constain";
 import { Link } from "react-router-dom";
 import { useFavorite } from "../../contexts/Favorite";
 import { FAVORITE } from "../../contexts/Favorite/Constain";
@@ -36,6 +40,13 @@ const MiniView: React.FC<{ product: Product }> = ({ product }) => {
               style={{ height: "280px" }}
               alignItems="center"
             >
+              <Text
+                h4
+                className="main-color"
+                css={{ position: "absolute", zIndex: 1, top: 10 }}
+              >
+                <GetPercent sale={product.sale} price={product.price} />
+              </Text>
               <div className="view__img">
                 <img src={fixImage(product.image[0])} />
               </div>
@@ -70,7 +81,9 @@ const MiniView: React.FC<{ product: Product }> = ({ product }) => {
                         color: "$accents7!important",
                       }}
                     >
-                      <FormatMoney price={product.sale} />
+                      {(product.sale && Number(product.sale)) > 0 && (
+                        <FormatMoney price={product.sale} />
+                      )}
                     </Text>
                     <Spacer x={0.5} />
                     {/*<Text color="success" size="$xl" b>*/}

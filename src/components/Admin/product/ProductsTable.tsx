@@ -68,7 +68,7 @@ const ProductsTable = () => {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     if (input) {
-      search(input);
+      search(input, null);
     } else {
       getProducts(meta.page);
     }

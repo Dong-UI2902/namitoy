@@ -48,10 +48,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    sr.reveal(`.home__title`, { origin: "bottom", delay: 200 });
-    sr.reveal(`.home__description`, { origin: "bottom", delay: 300 });
-    sr.reveal(`.home__button`, { origin: "bottom", delay: 400 });
-    sr.reveal(`.home__girl`, { origin: "right", delay: 600 });
+    sr.reveal(`.home__data`, { origin: "bottom", delay: 200 });
+    sr.reveal(`.home__title`, { origin: "bottom", delay: 300 });
+    sr.reveal(`.home__description`, { origin: "bottom", delay: 600 });
+    sr.reveal(`.home__girl`, { origin: "right", delay: 300 });
     sr.reveal(`.home__toy1`, { origin: "top", delay: 1500 });
     sr.reveal(`.home__toy2`, { origin: "top", delay: 1600 });
     sr.reveal(`.home__toy:nth-child(1)`, { origin: "top", delay: 1300 });

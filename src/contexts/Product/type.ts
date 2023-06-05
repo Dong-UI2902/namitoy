@@ -63,5 +63,5 @@ export interface ProductContextAPI extends ProductProviderState {
   findById: (productId: string) => void;
   // update: (productId: string) => void;
   deleteProduct: (productId: string) => void;
-  search: (name: string) => void;
+  search: (name: string | null, brand: string | null) => void;
 }

@@ -101,6 +101,12 @@ const ViewProduct = () => {
                   <Text size="$xl" weight="medium">
                     {product.title}
                   </Text>
+                  <Text size="$md" weight="normal">
+                    Nhà phát hành:{" "}
+                    <Link to={`/search?brand=${product.brand}`}>
+                      {product.brand}
+                    </Link>
+                  </Text>
                   <Row justify="space-between">
                     <Col>
                       <Text weight="medium" className="main-color">
