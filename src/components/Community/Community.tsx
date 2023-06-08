@@ -33,7 +33,7 @@ const Community = () => {
             desc={
               "NSFW Discord, đầy đủ uncen 18+ . Chơi game và giao lưu chat chit"
             }
-            href={"https://discord.gg/caoxbanzai"}
+            href={"https://discord.gg/xUyWPsx"}
           >
             <FaDiscord fill={"rgb(114, 137, 218)"} />
           </CardSocial>
