@@ -19,7 +19,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
 
   return (
     <section className="collection">
-      <Container>
+      <Container css={{ padding: 0 }}>
         <nav aria-label="breadcrumb" style={{ backgroundColor: "#f5f5f5" }}>
           <ol className="breadcrumb">
             <li className="breadcrumb-item">

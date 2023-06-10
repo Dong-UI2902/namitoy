@@ -53,7 +53,7 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
             >
               {<FormatMoney price={product.price} />}
             </Text>
-            <Spacer x={1} />
+            <Spacer x={0.5} />
             <Text
               css={{
                 color: "$accents7",
