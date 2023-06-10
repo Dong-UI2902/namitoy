@@ -142,7 +142,7 @@ const ListProduct = () => {
               </Grid>
             </Grid.Container>
           </Grid>
-          <Grid xs={12} sm={8} md={9} style={{ display: "unset", padding: 0 }}>
+          <Grid xs={12} sm={8} md={10} style={{ display: "unset", padding: 0 }}>
             <div className="section">
               <Text h3 css={{ paddingLeft: "10px" }}>
                 Có {temp.length} sản phẩm
