@@ -91,7 +91,7 @@ const ListProduct = () => {
 
   return (
     <section className="collection">
-      <Container>
+      <Container css={{ padding: 0 }}>
         <Grid.Container gap={2} justify="center" style={{ padding: 0 }}>
           <Grid xs={12} sm={4} md={2}>
             <Grid.Container gap={2}>
