@@ -93,7 +93,7 @@ const ListProduct = () => {
     <section className="collection">
       <Container css={{ padding: 0 }}>
         <Grid.Container gap={2} justify="center" style={{ padding: 0 }}>
-          <Grid xs={12} sm={4} md={2}>
+          <Grid xs={12} sm={4} md={2} style={{ padding: 0 }}>
             <Grid.Container gap={2}>
               <Grid css={{ width: "100%" }}>
                 <Collapse.Group shadow accordion={false}>

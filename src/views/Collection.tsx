@@ -19,20 +19,20 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
 
   return (
     <section className="collection">
-      <Container css={{ padding: 0 }}>
-        <nav aria-label="breadcrumb" style={{ backgroundColor: "#f5f5f5" }}>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <Link to="/">Trang chủ</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link to="#">Danh mục</Link>
-            </li>
-            <li className="breadcrumb-item active" aria-current="page">
-              {path}
-            </li>
-          </ol>
-        </nav>
+      <nav aria-label="breadcrumb" style={{ backgroundColor: "#f5f5f5" }}>
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link to="/">Trang chủ</Link>
+          </li>
+          <li className="breadcrumb-item">
+            <Link to="#">Danh mục</Link>
+          </li>
+          <li className="breadcrumb-item active" aria-current="page">
+            {path}
+          </li>
+        </ol>
+      </nav>
+      <Container>
         {loading ? (
           <center>
             <Loading size="lg" />
