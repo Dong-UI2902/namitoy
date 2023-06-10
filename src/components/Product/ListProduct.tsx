@@ -7,7 +7,7 @@ import { Product, useProduct } from "../../contexts/Product";
 const ListProduct = () => {
   const [selected, setSelected] = React.useState<string[]>([]);
   const [selectedPrice, setSelectedPrice] = React.useState<string[]>([]);
-  const { products, loading, search } = useProduct();
+  const { products } = useProduct();
   const [brands, setBrands] = useState<string[]>([]);
   const [temp, setTemp] = useState<Product[]>([]);
   const handleSelected = (e: string[]) => {
@@ -96,7 +96,11 @@ const ListProduct = () => {
           <Grid xs={12} sm={4} md={2} style={{ padding: 0 }}>
             <Grid.Container gap={2}>
               <Grid css={{ width: "100%" }}>
-                <Collapse.Group shadow accordion={false}>
+                <Collapse.Group
+                  shadow
+                  accordion={false}
+                  css={{ position: "sticky", top: "65px", margin: "0 auto" }}
+                >
                   <Collapse
                     expanded
                     title={`Thương hiệu`}

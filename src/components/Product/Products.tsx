@@ -9,7 +9,7 @@ const Products: React.FC<{ listProducts: Product[] }> = ({ listProducts }) => {
     <div className="product">
       <Grid.Container gap={2} justify="flex-start" style={{ padding: 0 }}>
         {listProducts.map((item, index) => (
-          <Grid xs={6} sm={3} key={index}>
+          <Grid xs={6} sm={4} md={3} key={index}>
             <CardProd product={item} />
           </Grid>
         ))}
