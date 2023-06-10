@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Checkbox, Collapse, Container, Grid } from "@nextui-org/react";
+import { Checkbox, Collapse, Container, Grid, Text } from "@nextui-org/react";
 import { FaAngleRight } from "react-icons/fa";
 import Products from "./Products";
 import { Product, useProduct } from "../../contexts/Product";
@@ -140,6 +140,9 @@ const ListProduct = () => {
           </Grid>
           <Grid xs={12} sm={8} md={9} style={{ display: "unset", padding: 0 }}>
             <div className="section">
+              <Text h3 css={{ paddingLeft: "10px" }}>
+                Có {temp.length} sản phẩm
+              </Text>
               <Products listProducts={temp} />
             </div>
           </Grid>
