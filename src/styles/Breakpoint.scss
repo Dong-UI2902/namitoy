@@ -43,6 +43,10 @@
     }
   }
 
+  .title {
+    font-size: 1.7rem;
+  }
+
   .auth {
     .form {
       padding: 20px 0;
@@ -74,8 +78,48 @@
   }
 
   .product {
+    max-width: 100%;
+
+    .same-product {
+      margin-top: 0px!important;
+    }
+
+    &__image {
+      .img {
+        height: 372px!important;
+      }
+    }
+
+    .carousel {
+      padding-top: 1rem!important;
+    }
+
     &__view-body {
       gap: 1rem;
+      margin-top: 0px!important;
+    }
+
+    &__card {
+      &-img {
+        img {
+          height: 150px!important;
+        }
+      }
+
+      &-title {
+        -webkit-line-clamp: 2!important;
+        font-size: 11px;
+        height: 33px;
+        line-height: 14px;
+      }
+
+      &-description {
+        padding: 0 5px;
+      }
+
+      &-price {
+        font-size: 13px;
+      }
     }
   }
 }

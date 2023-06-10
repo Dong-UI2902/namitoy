@@ -1,21 +1,40 @@
 .product {
   position: relative;
 
-  &__card-title {
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    display: -webkit-box;
-    overflow: hidden;
+  .same-product {
+    margin-top: 50px;
+  }
+
+  &__card {
+    &-title {
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      display: -webkit-box;
+      overflow: hidden;
+    }
+
+    &-img {
+      img {
+        width: auto;
+        object-fit: cover;
+        height: 300px;
+      }
+    }
   }
 
   &__image {
     position: sticky;
     top: 65px;
-    img {
-      display: block;
-      margin: 0 auto;
+    margin: 0 auto;
+
+    .img {
       padding-top: 2rem;
       transition: .3s;
+      height: 600px;
+      width: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
     }
 
     .carousel {

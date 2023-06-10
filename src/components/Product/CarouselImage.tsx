@@ -35,10 +35,16 @@ const CarouselImage: React.FC<{ images?: string[] }> = ({ images }) => {
   return (
     <div className="product">
       <div className="product__image">
-        <img
-          src={selectedImage && fixImage(selectedImage)}
-          alt={"ảnh sản phẩm"}
-        />
+        <div>
+          <div
+            className="img"
+            style={{
+              backgroundImage: `url(${
+                selectedImage && fixImage(selectedImage)
+              })`,
+            }}
+          />
+        </div>
         <div className="carousel">
           <div className="carousel__images">
             {images &&

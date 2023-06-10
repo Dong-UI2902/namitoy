@@ -29,6 +29,7 @@ const ViewProduct = () => {
   const { id } = useParams();
   const { user } = useAuth();
   const [visible, setVisible] = React.useState(false);
+  const [loadingSameProduct, setLoadingSameProduct] = React.useState(false);
 
   const [sameProducts, setSameProducts] = useState<Product[]>([]);
 
@@ -39,7 +40,8 @@ const ViewProduct = () => {
 
   useEffect(() => {
     if (id) {
-      return findById(id);
+      window.scrollTo(0, 0);
+      findById(id);
     } else {
       window.location.href = "/";
     }
@@ -51,11 +53,12 @@ const ViewProduct = () => {
       // @ts-ignore
       document.getElementById("description").innerHTML = product.description;
       document.title = product.title;
+      setLoadingSameProduct(true);
       productService
         .getSameProductsByType(product.type._id)
         .then((res) => setSameProducts(res.data))
         .catch()
-        .finally();
+        .finally(() => setLoadingSameProduct(false));
     }
   }, [product]);
 
@@ -87,7 +90,7 @@ const ViewProduct = () => {
         <div className="product">
           <Container lg>
             <Grid.Container className="product__view" justify="center">
-              <Grid xs={12} sm={5}>
+              <Grid xs={12} sm={5} className="no-flex">
                 <CarouselImage images={product.image} />
               </Grid>
               <Spacer x={1} />
@@ -143,11 +146,17 @@ const ViewProduct = () => {
                   </div>
                 </div>
               </Grid>
-              <section className="section" style={{ marginTop: "50px" }}>
+              <section className="section same-product">
                 <center>
                   <Text className="title main-color">Sản phẩm liên quan</Text>
                 </center>
-                <Products listProducts={sameProducts} />
+                {loadingSameProduct ? (
+                  <center>
+                    <Loading size="lg" />
+                  </center>
+                ) : (
+                  <Products listProducts={sameProducts} />
+                )}
               </section>
             </Grid.Container>
           </Container>

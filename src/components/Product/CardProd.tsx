@@ -31,13 +31,14 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
         >
           <Card.Image
             src={fixImage(product.image[0])}
-            objectFit="cover"
-            width={"auto"}
-            height={300}
             alt={product.title}
+            className="product__card-img"
           />
         </Card.Body>
-        <Card.Footer css={{ display: "unset" }}>
+        <Card.Footer
+          css={{ display: "unset" }}
+          className="product__card-description"
+        >
           <Text className="product__card-title" b>
             {product.title}
           </Text>
@@ -48,7 +49,7 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
                 fontWeight: "$semibold",
                 fontSize: "$sm",
               }}
-              className="main-color"
+              className="main-color product__card-price"
             >
               {<FormatMoney price={product.price} />}
             </Text>
@@ -60,6 +61,7 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
                 fontSize: "$sm",
               }}
               del
+              className="product__card-price"
             >
               {(product.sale && Number(product.sale)) > 0 && (
                 <FormatMoney price={product.sale} />
