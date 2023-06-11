@@ -291,7 +291,7 @@ const Nav = () => {
           <Navbar.CollapseItem
             key={item._id}
             activeColor="secondary"
-            isActive={index === 2}
+            isActive={checkRoute(handleHref(item.name))}
           >
             <Link
               color="inherit"
