@@ -120,7 +120,20 @@
       &-price {
         font-size: 13px;
       }
+
+      &-slide {
+        min-height: 260px!important;
+      }
     }
+  }
+
+  .react-3d-carousel, .slider-single, .slider-single-content {
+    img {
+      height: 100%!important;
+    }
+  }
+  .slider-single-content > a > div {
+    height: 100%!important;
   }
 }
 

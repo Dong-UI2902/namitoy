@@ -28,7 +28,7 @@ const MiniView: React.FC<{ product: Product }> = ({ product }) => {
   return (
     <div className="view">
       {product?._id ? (
-        <Card css={{ p: "$6", backgroundColor: "#fff" }}>
+        <Card css={{ p: "$6", backgroundColor: "#fff", transition: ".3s" }}>
           <div className="view__icon">
             <FaRegStar />
           </div>

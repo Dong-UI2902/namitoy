@@ -10,12 +10,13 @@ import { Link } from "react-router-dom";
 
 const CardProd: React.FC<{ product: Product }> = ({ product }) => {
   return (
-    <Link to={`/product/${product._id}`}>
+    <Link to={`/product/${product._id}`} style={{ width: "100%" }}>
       <Card
         isPressable
         css={{
           filter: "none",
           borderRadius: "unset",
+          padding: "5px",
         }}
       >
         {product.soldOld && <div className="sold_out">Hết hàng</div>}

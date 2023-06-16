@@ -18,7 +18,7 @@ const Slide: React.FC<{
   }, [hot]);
 
   return (
-    <div style={{ minHeight: "375px" }}>
+    <div className="product__card-slide">
       {slides.length > 0 ? (
         <Carousel
           slides={slides}
