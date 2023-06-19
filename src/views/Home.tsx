@@ -94,35 +94,35 @@ const Home = () => {
               <div className="home__images">
                 <div className="home__toy-animate">
                   <img
-                    src="assets/img/bg-header.png"
+                    src="/assets/img/bg-header.png"
                     alt="juice image"
                     className="home__girl"
                   />
                 </div>
                 <img
-                  src="assets/img/layer-1.png"
-                  alt="toy"
+                  src="/assets/img/layer1.png"
+                  alt="toy1"
                   className="home__toy1 animation"
                 />
                 <img
-                  src="assets/img/layer-2.png"
-                  alt="toy"
+                  src="/assets/img/layer2.png"
+                  alt="toy2"
                   className="home__toy2 animation"
                 />
                 <div>
                   <img
-                    src="assets/img/layer-3.png"
-                    alt="leaf image"
+                    src="/assets/img/layer3.png"
+                    alt="leaf image1"
                     className="home__toy animation"
                   />
                   <img
-                    src="assets/img/layer-4.png"
-                    alt="leaf image"
+                    src="/assets/img/layer4.png"
+                    alt="leaf image2"
                     className="home__toy animation"
                   />
                   <img
-                    src="assets/img/layer-5.png"
-                    alt="leaf image"
+                    src="/assets/img/layer5.png"
+                    alt="leaf image3"
                     className="home__toy animation"
                   />
                 </div>
