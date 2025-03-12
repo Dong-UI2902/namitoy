@@ -6,6 +6,7 @@ export type Product = {
   _id?: string;
   image: string[];
   title: string;
+  slug: string;
   brand: string;
   description: string;
   soldOld: boolean;
@@ -61,6 +62,7 @@ export interface ProductContextAPI extends ProductProviderState {
   addNewProduct: (product: Product) => void;
   updateProduct: (product: Product) => void;
   findById: (productId: string) => void;
+  findByName: (productName: string) => void;
   // update: (productId: string) => void;
   deleteProduct: (productId: string) => void;
   search: (name: string | null, brand: string | null) => void;

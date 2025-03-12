@@ -96,7 +96,7 @@ const MiniView: React.FC<{ product: Product }> = ({ product }) => {
                     Yêu thích
                   </Button>
                   <Spacer x={1} />
-                  <Link to={`/product/${product._id}`}>
+                  <Link to={`/product/detail/${product.slug}`}>
                     <Button
                       bordered
                       className="border main-color"

@@ -13,7 +13,6 @@ import { Link, useParams } from "react-router-dom";
 import CarouselImage from "../components/Product/CarouselImage";
 import { Product, useProduct } from "../contexts/Product";
 import { FormatMoney, GetPercent } from "../contexts/Product/Constain";
-import { useType } from "../contexts/Type/Provider";
 import { FaHeart } from "react-icons/fa";
 import productService from "../contexts/Product/services";
 import Products from "../components/Product/Products";
@@ -21,12 +20,12 @@ import { useFavorite } from "../contexts/Favorite";
 import { FAVORITE } from "../contexts/Favorite/Constain";
 import { useAuth } from "../contexts/Auth";
 import Noti from "../components/Admin/Noti";
+import {FACEBOOK_LINK} from "../config/Constain";
 
 const ViewProduct = () => {
-  const { findById, product, loading } = useProduct();
-  const { handleHref } = useType();
+  const { findByName, product, loading } = useProduct();
   const { addToFavorite } = useFavorite();
-  const { id } = useParams();
+  const { name } = useParams();
   const { user } = useAuth();
   const [visible, setVisible] = React.useState(false);
   const [loadingSameProduct, setLoadingSameProduct] = React.useState(false);
@@ -39,14 +38,14 @@ const ViewProduct = () => {
   };
 
   useEffect(() => {
-    if (id) {
+    if (name) {
       window.scrollTo(0, 0);
-      findById(id);
+      findByName(name);
     } else {
-      window.location.href = "/";
+      // window.location.href = "/";
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]);
+  }, [name]);
 
   useEffect(() => {
     if (product._id) {
@@ -73,7 +72,7 @@ const ViewProduct = () => {
             <Link to="#">Danh mục</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            <Link to={`/collection/${handleHref(product.type.name)}`}>
+            <Link to={`/collection/${product.type.slug}`}>
               {product.type.name}
             </Link>
           </li>
@@ -129,6 +128,18 @@ const ViewProduct = () => {
                       </Text>
                     </Col>
                   </Row>
+                  <div className="notice">
+                    Vui lòng gửi tin nhắn về messenger trên trang web hoặc truy
+                    cập về địa chỉ{" "}
+                    <a
+                      href={FACEBOOK_LINK}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      fanpage Facebook
+                    </a>{" "}
+                    để được hỗ trợ tư vấn và đặt hàng.
+                  </div>
                   <hr />
                   <Button
                     shadow

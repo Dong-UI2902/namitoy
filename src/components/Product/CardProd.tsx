@@ -9,8 +9,9 @@ import {
 import { Link } from "react-router-dom";
 
 const CardProd: React.FC<{ product: Product }> = ({ product }) => {
+
   return (
-    <Link to={`/product/${product._id}`} style={{ width: "100%" }}>
+    <Link to={`/product/detail/${product.slug}`} style={{ width: "100%" }}>
       <Card
         isPressable
         css={{
@@ -37,7 +38,7 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
           />
         </Card.Body>
         <Card.Footer
-          css={{ display: "unset" }}
+          css={{ display: "unset", padding: "0!important" }}
           className="product__card-description"
         >
           <Text className="product__card-title" b>

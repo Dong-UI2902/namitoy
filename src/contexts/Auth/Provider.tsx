@@ -61,7 +61,10 @@ const AuthProvider: React.FC<{ children: any }> = ({ children }) => {
 
     authService
       .register(userSignup)
-      .then((res) => setUser(res.user))
+      .then((res) => {
+        setUser(res.user);
+        window.location.href = "/login";
+      })
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
   };

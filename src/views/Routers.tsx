@@ -11,7 +11,7 @@ import Layout from "../components/Layout";
 import Searching from "./Searching";
 
 const Routers = () => {
-  const { types, handleHref } = useType();
+  const { types } = useType();
 
   return (
     <Layout>
@@ -20,11 +20,11 @@ const Routers = () => {
         {types.map((item, index) => (
           <Route
             key={index}
-            path={`collection/${handleHref(item.name)}` || "/"}
-            element={<Collection path={item.name} />}
+            path={`collection/${(item.slug)}` || "/"}
+            element={<Collection path={item.slug || ""} name={item.name} />}
           />
         ))}
-        <Route path="/product/:id" element={<ViewProduct />} />
+        <Route path="/product/detail/:name" element={<ViewProduct />} />
         <Route path="/manager" element={<Admin path="all-product" />} />
         <Route
           path="/manager/all-product"

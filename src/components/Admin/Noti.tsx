@@ -21,11 +21,7 @@ const Noti: React.FC<{
       >
         <Modal.Header>
           <Text id="modal-title" size={20}>
-            Thông
-            <Text b size={12}>
-              cmn
-            </Text>
-            Báo
+            Thông Báo
           </Text>
         </Modal.Header>
         <Modal.Body>

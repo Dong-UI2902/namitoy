@@ -1,5 +1,6 @@
 import React from "react";
 import { Text } from "@nextui-org/react";
+import {DISCORD_LINK} from "../config/Constain";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -29,7 +30,7 @@ const Footer = () => {
             </svg>{" "}
             by
             <a
-              href="https://discord.gg/xUyWPsx"
+              href={DISCORD_LINK}
               target="_blank"
               rel="noreferrer"
             >

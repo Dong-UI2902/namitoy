@@ -53,6 +53,12 @@ async function findById(_id: string): Promise<ProductResponse> {
   return response.data;
 }
 
+async function findByName(name: string): Promise<ProductResponse> {
+  const response = await Api.get(`${PATH}/detail/${name}`);
+
+  return response.data;
+}
+
 async function store(prod: Product): Promise<ProductResponse> {
   const response = await Api.post(PATH, prod);
 
@@ -89,6 +95,7 @@ export default {
   getHotProduct,
   getNewProducts,
   findById,
+  findByName,
   store,
   update,
   destroy,

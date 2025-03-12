@@ -12,8 +12,10 @@ export const PRODUCT = {
   sale: "0",
   soldOld: false,
   title: "",
+  slug: "",
   type: {
     name: "",
+    slug: "",
   },
   user: undefined,
 };

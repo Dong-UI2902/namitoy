@@ -4,19 +4,11 @@ import "../styles/Store.scss";
 import CardPolicy from "../components/Privacy Policy/CardPolicy";
 import Community from "../components/Community/Community";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ScrollReveal from "scrollreveal";
 import { Product } from "../contexts/Product";
 import productService from "../contexts/Product/services";
 import Products from "../components/Product/Products";
 import HotProduct from "../components/Product/HotProduct";
-
-export const sr = ScrollReveal({
-  origin: "top",
-  distance: "300px",
-  duration: 1500,
-  delay: 400,
-  // reset: true,
-});
+import {FACEBOOK_LINK} from "../config/Constain";
 
 const Home = () => {
   const [newProducts, setNewProducts] = useState<Product[]>([]);
@@ -48,15 +40,6 @@ const Home = () => {
   };
 
   useEffect(() => {
-    sr.reveal(`.home__data`, { origin: "bottom", delay: 200 });
-    sr.reveal(`.home__title`, { origin: "bottom", delay: 300 });
-    sr.reveal(`.home__description`, { origin: "bottom", delay: 600 });
-    sr.reveal(`.home__girl`, { origin: "right", delay: 300 });
-    sr.reveal(`.home__toy1`, { origin: "top", delay: 1500 });
-    sr.reveal(`.home__toy2`, { origin: "top", delay: 1600 });
-    sr.reveal(`.home__toy:nth-child(1)`, { origin: "top", delay: 1300 });
-    sr.reveal(`.home__toy:nth-child(2)`, { origin: "top", delay: 1400 });
-    sr.reveal(`.home__toy:nth-child(3)`, { origin: "top", delay: 1500 });
     getNewProducts();
     document.title = `Trang chủ`;
   }, []);
@@ -146,14 +129,16 @@ const Home = () => {
               </CardPolicy>
             </Grid>
             <Grid md={3} sm={6} xs={12} justify="center">
-              <CardPolicy title={"Thông tin liên hệ"} url="ui2">
+              <CardPolicy title={"Cách thức đặt hàng"} url="ui2">
                 <Text>
-                  Tư vấn online/hotline/Zalo/Whatsapp: 0933032964 – Namitoys
+                  Vui lòng đặt hàng online/hotline/Zalo/Whatsapp: 0933032964 –
+                  Namitoys
                 </Text>
                 Fanpage:{" "}
                 <Link
                   color="secondary"
-                  href="https://www.facebook.com/namitoyshop"
+                  href={FACEBOOK_LINK}
+                  target="_blank"
                 >
                   <div
                     style={{
@@ -163,7 +148,7 @@ const Home = () => {
                       textOverflow: "ellipsis",
                     }}
                   >
-                    https://www.facebook.com/namitoyshop
+                    {FACEBOOK_LINK}
                   </div>
                 </Link>
               </CardPolicy>
@@ -204,10 +189,7 @@ const Home = () => {
         </section>
         <section className="section">
           <center>
-            <Link
-              href={"/collection/Am%20đao%20gia"}
-              className="title main-color"
-            >
+            <Link href={"/collection/am-dao-gia"} className="title main-color">
               Âm đạo giả
             </Link>
           </center>
@@ -222,7 +204,7 @@ const Home = () => {
         <section className="section">
           <center>
             <Link
-              href="/collection/Am%20đao%20gia%20JAV%20Idol"
+              href="/collection/am-dao-gia-jav-idol"
               className="title main-color"
             >
               Âm đạo giả Idols

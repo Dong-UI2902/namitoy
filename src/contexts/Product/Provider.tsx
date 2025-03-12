@@ -102,6 +102,15 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       .finally(() => setLoading(false));
   };
 
+    const findByName = (name: string) => {
+        setLoading(true);
+        productService
+            .findByName(name)
+            .then((res) => setProduct(res.data))
+            .catch((err) => setError(err.message))
+            .finally(() => setLoading(false));
+    };
+
   const deleteProduct = (_id: string) => {
     setLoading(true);
     productService
@@ -149,6 +158,7 @@ const Provider: React.FC<{ children: any }> = ({ children }) => {
       arrToStringImg,
       updateProduct,
       findById,
+      findByName,
       deleteProduct,
       getHotProduct,
       search,

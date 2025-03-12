@@ -29,9 +29,8 @@ const Nav = () => {
 
   const checkRoute = (route: string) => {
     const str = pathname.replace("/collection/", "");
-    str.replace("/%20/g", " ");
 
-    return route.toLowerCase() === decodeURI(str).toLowerCase();
+    return route === str;
   };
 
   useEffect(() => {
@@ -75,26 +74,26 @@ const Nav = () => {
         variant="underline"
       >
         <Navbar.Link
-          isActive={checkRoute("Am đao gia")}
-          href={`/collection/Am%20đao%20gia`}
+          isActive={checkRoute("am-dao-gia")}
+          href={`/collection/am-dao-gia`}
         >
           Âm đạo giả
         </Navbar.Link>
         <Navbar.Link
-          isActive={checkRoute("Am đao gia JAV Idol")}
-          href={`/collection/Am%20đao%20gia%20JAV%20Idol`}
+          isActive={checkRoute("am-dao-gia-jav-idol")}
+          href={`/collection/am-dao-gia-jav-idol`}
         >
           Âm đạo giả JAV Idol
         </Navbar.Link>
         <Navbar.Link
-          isActive={checkRoute("khuon mong nguyen khoi")}
-          href={`/collection/Khuon%20mong%20nguyen%20khoi`}
+          isActive={checkRoute("khuon-mong-nguyen-khoi")}
+          href={`/collection/khuon-mong-nguyen-khoi`}
         >
           Khuôn mông nguyên khối
         </Navbar.Link>
         <Navbar.Link
-          isActive={checkRoute("Bup be tinh duc")}
-          href={`/collection/Bup%20be%20tinh%20duc`}
+          isActive={checkRoute("bup-be-tinh-duc")}
+          href={`/collection/bup-be-tinh-duc`}
         >
           Búp bê tình dục
         </Navbar.Link>
@@ -141,40 +140,40 @@ const Nav = () => {
           >
             <Dropdown.Item>
               <Navbar.Link
-                isActive={checkRoute("Anal Plug")}
-                href={`/collection/Anal%20Plug`}
+                isActive={checkRoute("anal-plug")}
+                href={`/collection/anal-plug`}
               >
                 Anal Plug
               </Navbar.Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <Navbar.Link
-                isActive={checkRoute("Gel boi tron")}
-                href={`/collection/Gel%20boi%20tron`}
+                isActive={checkRoute("gel-boi-tron")}
+                href={`/collection/gel-boi-tron`}
               >
                 Gel bôi trơn
               </Navbar.Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <Navbar.Link
-                isActive={checkRoute("Trung rung nam/nu")}
-                href={`/collection/Trung%20rung%20nam/nu`}
+                isActive={checkRoute("trung-rung-nam/nu")}
+                href={`/collection/trung-rung-nam/nu`}
               >
                 Trứng rung nam/nữ
               </Navbar.Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <Navbar.Link
-                isActive={checkRoute("Nuoc hoa")}
-                href={`/collection/Nuoc%20hoa`}
+                isActive={checkRoute("nuoc-hoa")}
+                href={`/collection/nuoc-hoa`}
               >
                 Nước hoa
               </Navbar.Link>
             </Dropdown.Item>
             <Dropdown.Item>
               <Navbar.Link
-                isActive={checkRoute("Phu kien")}
-                href={`/collection/Phu%20kien`}
+                isActive={checkRoute("phu-kien")}
+                href={`/collection/phu-kien`}
               >
                 Phụ kiện
               </Navbar.Link>
@@ -203,40 +202,6 @@ const Nav = () => {
           }}
         >
           <form onSubmit={handleSubmit} style={{ display: "flex" }}>
-            {/*<Input*/}
-            {/*  clearable*/}
-            {/*  contentLeft={*/}
-            {/*    <svg*/}
-            {/*      fill="none"*/}
-            {/*      height={16 || 24}*/}
-            {/*      viewBox="0 0 24 24"*/}
-            {/*      width={16 || 24}*/}
-            {/*    >*/}
-            {/*      <path*/}
-            {/*        d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19ZM22 22l-2-2"*/}
-            {/*        stroke={"var(--nextui-colors-accents6)"}*/}
-            {/*        strokeLinecap="round"*/}
-            {/*        strokeLinejoin="round"*/}
-            {/*        strokeWidth={2}*/}
-            {/*      />*/}
-            {/*    </svg>*/}
-            {/*  }*/}
-            {/*  contentLeftStyling={false}*/}
-            {/*  css={{*/}
-            {/*    w: "100%",*/}
-            {/*    "@xsMax": {*/}
-            {/*      mw: "300px",*/}
-            {/*    },*/}
-            {/*    "& .nextui-input-content--left": {*/}
-            {/*      h: "100%",*/}
-            {/*      ml: "$4",*/}
-            {/*      dflex: "center",*/}
-            {/*    },*/}
-            {/*  }}*/}
-            {/*  value={input}*/}
-            {/*  placeholder="Search..."*/}
-            {/*  onChange={(e) => setInput(e.target.value)}*/}
-            {/*/>*/}
             <div className="input__control">
               <div className="input">
                 <div>
@@ -291,7 +256,7 @@ const Nav = () => {
           <Navbar.CollapseItem
             key={item._id}
             activeColor="secondary"
-            isActive={checkRoute(handleHref(item.name))}
+            isActive={checkRoute(item.slug || "")}
           >
             <Link
               color="inherit"
@@ -299,7 +264,7 @@ const Nav = () => {
               css={{
                 minWidth: "100%",
               }}
-              href={`/collection/${handleHref(item.name)}`}
+              href={`/collection/${item.slug}`}
             >
               {item.name}
             </Link>

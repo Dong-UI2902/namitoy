@@ -14,7 +14,7 @@ const DropdownUser = () => {
             as="button"
             color="secondary"
             size="md"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+            src="/assets/avt.png"
           />
         </Dropdown.Trigger>
       </Navbar.Item>
@@ -37,7 +37,8 @@ const DropdownUser = () => {
       >
         <Dropdown.Item key="profile" css={{ height: "$18" }}>
           <Text b color="inherit" css={{ d: "flex" }}>
-            {user?.username}
+            {/*{user?.username}*/}
+              Chưa đổi được avt đâu :'(
           </Text>
         </Dropdown.Item>
         {user?.role === "ADMIN" ? (

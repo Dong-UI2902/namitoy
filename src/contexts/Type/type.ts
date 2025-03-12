@@ -3,6 +3,7 @@ import { Respone } from "../../config/type";
 export type Type = {
   _id?: string;
   name: string;
+  slug?: string;
   createdAt?: Date;
 };
 

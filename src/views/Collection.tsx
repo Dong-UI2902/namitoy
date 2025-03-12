@@ -6,12 +6,12 @@ import { useType } from "../contexts/Type/Provider";
 import { useProduct } from "../contexts/Product";
 import ListProduct from "../components/Product/ListProduct";
 
-const Collection: React.FC<{ path: string }> = ({ path }) => {
+const Collection: React.FC<{ path: string, name: string }> = ({ path, name }) => {
   const { types } = useType();
   const { getProductsByType, loading } = useProduct();
 
   useEffect(() => {
-    const key = types.find((item) => item.name === path);
+    const key = types.find((item) => item.slug === path);
     // @ts-ignore
     document.title = key.name;
     if (key?._id) return getProductsByType(key._id, 0);
@@ -28,7 +28,7 @@ const Collection: React.FC<{ path: string }> = ({ path }) => {
             <Link to="#">Danh mục</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            {path}
+            {name}
           </li>
         </ol>
       </nav>
