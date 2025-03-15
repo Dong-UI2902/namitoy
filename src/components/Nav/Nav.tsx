@@ -1,5 +1,5 @@
 import React, {SyntheticEvent, useEffect, useRef, useState} from "react";
-import {Badge, Button, Dropdown, Link, Navbar as NavBar, Text} from "@nextui-org/react";
+import {Badge, Button, Dropdown, Link, Navbar, Text} from "@nextui-org/react";
 import {useAuth} from "../../contexts/Auth";
 import {Link as LinkSearch, useLocation, useSearchParams,} from "react-router-dom";
 import DropdownUser from "./DropdownUser";
@@ -44,9 +44,9 @@ const Nav = () => {
     }, [searching]);
 
     return (
-        <NavBar variant="sticky" style={{background: "#fff", zIndex: "99999"}}>
-            <NavBar.Toggle showIn="md"/>
-            <NavBar.Brand
+        <Navbar variant="sticky" style={{background: "#fff", zIndex: "99999"}}>
+            <Navbar.Toggle showIn="md"/>
+            <Navbar.Brand
                 css={{
                     "@xs": {
                         w: "12%",
@@ -62,39 +62,39 @@ const Nav = () => {
                     <span style={{color: "var(--first-color)"}}>Namitoy </span>
                     Store
                 </Text>
-            </NavBar.Brand>
-            <NavBar.Content
+            </Navbar.Brand>
+            <Navbar.Content
                 enableCursorHighlight
                 activeColor="secondary"
                 hideIn="md"
                 variant="underline"
             >
-                <NavBar.Link
+                <Navbar.Link
                     isActive={checkRoute("am-dao-gia")}
                     href={`/collection/am-dao-gia`}
                 >
                     Âm đạo giả
-                </NavBar.Link>
-                <NavBar.Link
+                </Navbar.Link>
+                <Navbar.Link
                     isActive={checkRoute("am-dao-gia-jav-idol")}
                     href={`/collection/am-dao-gia-jav-idol`}
                 >
                     Âm đạo giả JAV Idol
-                </NavBar.Link>
-                <NavBar.Link
+                </Navbar.Link>
+                <Navbar.Link
                     isActive={checkRoute("khuon-mong-nguyen-khoi")}
                     href={`/collection/khuon-mong-nguyen-khoi`}
                 >
                     Khuôn mông nguyên khối
-                </NavBar.Link>
-                <NavBar.Link
+                </Navbar.Link>
+                <Navbar.Link
                     isActive={checkRoute("bup-be-tinh-duc")}
                     href={`/collection/bup-be-tinh-duc`}
                 >
                     Búp bê tình dục
-                </NavBar.Link>
+                </Navbar.Link>
                 <Dropdown isBordered>
-                    <NavBar.Item>
+                    <Navbar.Item>
                         <Dropdown.Button
                             auto
                             light
@@ -113,7 +113,7 @@ const Nav = () => {
                         >
                             Xem thêm
                         </Dropdown.Button>
-                    </NavBar.Item>
+                    </Navbar.Item>
                     <Dropdown.Menu
                         aria-label="ACME features"
                         css={{
@@ -135,49 +135,49 @@ const Nav = () => {
                         }}
                     >
                         <Dropdown.Item>
-                            <NavBar.Link
+                            <Navbar.Link
                                 isActive={checkRoute("anal-plug")}
                                 href={`/collection/anal-plug`}
                             >
                                 Anal Plug
-                            </NavBar.Link>
+                            </Navbar.Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <NavBar.Link
+                            <Navbar.Link
                                 isActive={checkRoute("gel-boi-tron")}
                                 href={`/collection/gel-boi-tron`}
                             >
                                 Gel bôi trơn
-                            </NavBar.Link>
+                            </Navbar.Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <NavBar.Link
+                            <Navbar.Link
                                 isActive={checkRoute("trung-rung-nam/nu")}
                                 href={`/collection/trung-rung-nam/nu`}
                             >
                                 Trứng rung nam/nữ
-                            </NavBar.Link>
+                            </Navbar.Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <NavBar.Link
+                            <Navbar.Link
                                 isActive={checkRoute("nuoc-hoa")}
                                 href={`/collection/nuoc-hoa`}
                             >
                                 Nước hoa
-                            </NavBar.Link>
+                            </Navbar.Link>
                         </Dropdown.Item>
                         <Dropdown.Item>
-                            <NavBar.Link
+                            <Navbar.Link
                                 isActive={checkRoute("phu-kien")}
                                 href={`/collection/phu-kien`}
                             >
                                 Phụ kiện
-                            </NavBar.Link>
+                            </Navbar.Link>
                         </Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
-            </NavBar.Content>
-            <NavBar.Content
+            </Navbar.Content>
+            <Navbar.Content
                 css={{
                     "@xs": {
                         w: "25%",
@@ -189,7 +189,7 @@ const Nav = () => {
                     },
                 }}
             >
-                <NavBar.Item
+                <Navbar.Item
                     css={{
                         "@xsMax": {
                             w: "100%",
@@ -229,27 +229,27 @@ const Nav = () => {
                             Tìm
                         </LinkSearch>
                     </form>
-                </NavBar.Item>
+                </Navbar.Item>
                 {!user ? (
-                    <NavBar.Item>
+                    <Navbar.Item>
                         <Button auto flat as={Link} href="/login">
                             Đăng nhập
                         </Button>
-                    </NavBar.Item>
+                    </Navbar.Item>
                 ) : (
                     <>
                         <Badge color="error" content={totalFavorite}>
-                            <NavBar.Link href={`/favorites`} css={{margin: "0 5px"}}>
+                            <Navbar.Link href={`/favorites`} css={{margin: "0 5px"}}>
                                 <FaHeart size={25} fill="#F31260"/>
-                            </NavBar.Link>
+                            </Navbar.Link>
                         </Badge>
                         <DropdownUser/>
                     </>
                 )}
-            </NavBar.Content>
-            <NavBar.Collapse>
+            </Navbar.Content>
+            <Navbar.Collapse>
                 {types.map((item, index) => (
-                    <NavBar.CollapseItem
+                    <Navbar.CollapseItem
                         key={item._id}
                         activeColor="secondary"
                         isActive={checkRoute(item.slug || "")}
@@ -264,10 +264,10 @@ const Nav = () => {
                         >
                             {item.name}
                         </Link>
-                    </NavBar.CollapseItem>
+                    </Navbar.CollapseItem>
                 ))}
-            </NavBar.Collapse>
-        </NavBar>
+            </Navbar.Collapse>
+        </Navbar>
     );
 };
 
