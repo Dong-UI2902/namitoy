@@ -49,11 +49,11 @@ const Home = () => {
       <section className="home" id="home">
         <div className="home__shape-small" />
         <div className="home__shape-big" />
-        <img
-          src="/assets/img/shape-bg.png"
-          alt="shape image"
-          className="home__shape-bg"
-        />
+        {/*<img*/}
+        {/*  src="/assets/img/shape-bg.png"*/}
+        {/*  alt="shape image"*/}
+        {/*  className="home__shape-bg"*/}
+        {/*/>*/}
         <Container md>
           <Grid.Container
             gap={2}

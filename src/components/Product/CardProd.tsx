@@ -35,6 +35,7 @@ const CardProd: React.FC<{ product: Product }> = ({ product }) => {
             src={fixImage(product.image[0])}
             alt={product.title}
             className="product__card-img"
+            loading="lazy"
           />
         </Card.Body>
         <Card.Footer
