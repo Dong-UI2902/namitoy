@@ -3,7 +3,8 @@ import axios from "axios";
 
 //TODO: fix url
 export const axiosClient = axios.create({
-  baseURL: "https://namitoy-dc650afaeea4.herokuapp.com/api/",
+  // baseURL: "https://namitoy-dc650afaeea4.herokuapp.com/api/",
+  baseURL: "http://localhost:8080/api/",
   withCredentials: true,
 });
 

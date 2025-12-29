@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import {
   Button,
-  Col,
   Container,
   Grid,
   Loading,
-  Row,
-  Spacer,
   Text,
 } from "@nextui-org/react";
 import { Link, useParams } from "react-router-dom";
 import CarouselImage from "../components/Product/CarouselImage";
 import { Product, useProduct } from "../contexts/Product";
-import { FormatMoney, GetPercent } from "../contexts/Product/Constain";
-import { FaHeart } from "react-icons/fa";
+import { FormatMoney } from "../contexts/Product/Constain";
+import {FaBox, FaHeart, FaTruck} from "react-icons/fa";
 import productService from "../contexts/Product/services";
 import Products from "../components/Product/Products";
 import { useFavorite } from "../contexts/Favorite";
@@ -88,11 +85,10 @@ const ViewProduct = () => {
       ) : (
         <div className="product">
           <Container lg>
-            <Grid.Container className="product__view" justify="center">
-              <Grid xs={12} sm={5} className="no-flex">
+            <Grid.Container className="product__view" justify="center" gap={3}>
+              <Grid xs={12} sm={6} className="no-flex">
                 <CarouselImage images={product.image} />
               </Grid>
-              <Spacer x={1} />
               <Grid
                 xs={12}
                 sm={6}
@@ -100,35 +96,55 @@ const ViewProduct = () => {
                 css={{ width: "370px" }}
               >
                 <div className="product__view-body">
-                  <Text size="$xl" weight="medium">
+                  <Text size="$2xl" weight="medium">
                     {product.title}
                   </Text>
-                  <Text size="$md" weight="normal">
-                    Nhà phát hành:{" "}
-                    <Link to={`/search?brand=${product.brand}`}>
-                      {product.brand}
-                    </Link>
+
+
+                  <Text weight="medium" className="price-color">
+                      {Number(product.sale) !== 0 && (
+                          <>
+                              Giá gốc: {" "}
+                              <Text del weight="medium">
+                                  <FormatMoney price={product.sale} />{" "}
+                              </Text>
+                              <br/>
+                          </>
+                      )}
+                    <span className="main-price">
+                      Giá: {" "}<FormatMoney  price={product.price} />
+                    </span>
+                      {Number(product.sale) !== 0 && (
+                          <>
+                              <br/>
+                              <span style={{color: "black", fontWeight: "normal"}}>
+                                Tiết kiệm:
+                                <FormatMoney price={Number(product.sale) - Number(product.price)}/>
+                              </span>
+                          </>
+                      )}
+
                   </Text>
-                  <Row justify="space-between">
-                    <Col>
-                      <Text weight="medium" className="main-color">
-                        {product.soldOld ? "Hết hàng" : "Còn hàng"}
-                      </Text>
-                      <Text weight="medium" className="price-color">
-                        Sale:{" "}
-                        <GetPercent sale={product.sale} price={product.price} />
-                      </Text>
-                    </Col>
-                    <Col css={{ textAlign: "end" }}>
-                      <Text del>
-                        <FormatMoney price={product.sale} />
-                      </Text>
-                      <Text weight="bold" className="price-color">
-                        <FormatMoney price={product.price} />
-                      </Text>
-                    </Col>
-                  </Row>
-                  <div className="notice">
+                  <div className={"block"} >
+                    <Text size="$xl" weight="normal">
+                      Nhà phát hành:{" "}
+                      <Link to={`/search?brand=${product.brand}`}>
+                        {product.brand}
+                      </Link>
+                    </Text>
+                    <Text size="$xl" weight="normal">
+                      Thể loại:{" "}
+                      <Link to={`/collection/${product.type.slug}`}>
+                        {product.type.name}
+                      </Link>
+                    </Text>
+                    <Text size="$xl" weight="normal">
+                      Chất liệu:{" "}
+                      {product.material}
+
+                    </Text>
+                  </div>
+                  <div className="notice block">
                     Vui lòng gửi tin nhắn về messenger trên trang web hoặc truy
                     cập về địa chỉ{" "}
                     <a
@@ -140,17 +156,44 @@ const ViewProduct = () => {
                     </a>{" "}
                     để được hỗ trợ tư vấn và đặt hàng.
                   </div>
-                  <hr />
-                  <Button
-                    shadow
-                    color="error"
-                    className="btn product__view-btn"
-                    auto
-                    iconRight={<FaHeart fill="currentColor" />}
-                    onClick={handleClick}
-                  >
-                    Thêm vào mục yêu thích
-                  </Button>
+                    <Button
+                        shadow
+                        color={"error"}
+                        className={`${!product.soldOld && "btn"} product__view-btn block `}
+                        auto
+                        iconRight={<FaHeart fill="currentColor" />}
+                        onClick={handleClick}
+                        disabled={product.soldOld}
+                    >
+                      {product.soldOld ? "Hết hàng" : "Thêm vào mục yêu thích"}
+                    </Button>
+                    <div className={"shipping notice block"}>
+                      <div>
+                        <div className={"shipping__title"}>
+                          <FaBox className={"shipping__icon main-color"} />
+                          Giao hàng kín đáo
+                        </div>
+                        <ul>
+                          <li>
+                            Che tên sản phẩm, đóng gói kĩ càng.
+                          </li>
+                          <li>
+                            Bảo mật danh tính.
+                          </li>
+                        </ul>
+                      </div>
+                      <div className={"shipping__box"}>
+                        <div className={"shipping__title"}>
+                          <FaTruck className={"shipping__icon main-color"} />
+                         Hình thức vận chuyển
+                        </div>
+                        <ul>
+                          <li>
+                            Giao hàng toàn quốc từ 1-2 ngày.
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                   <div>
                     <Text weight="medium">Mô tả</Text>
                     <Text id="description">{product.description}</Text>
